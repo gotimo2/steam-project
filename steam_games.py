@@ -43,3 +43,21 @@ for i in steamDictionary:
         genres = i["genres"],
         achievements = i["achievements"]
     ))
+
+def sortByName():
+    listOfGames.sort(key=lambda game: game.name)
+
+def sortByAppid():
+    listOfGames.sort(key=lambda game: game.appid, reverse=True)
+
+def sortByRating():
+    listOfGames.sort(key=lambda game: game.rating, reverse=True)
+
+def sortByPrice():
+    listOfGames.sort(key=lambda game: game.price, reverse=True)
+
+def sortByAge():
+    listOfGames.sort(key=lambda game: game.required_age, reverse=True)
+
+def sortByReleaseDate():
+    listOfGames.sort(key=lambda game: game.release_date, reverse=True)
