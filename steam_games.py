@@ -48,7 +48,7 @@ def sortByName():
     listOfGames.sort(key=lambda game: game.name)
 
 def sortByAppid():
-    listOfGames.sort(key=lambda game: game.appid, reverse=True)
+    listOfGames.sort(key=lambda game: game.appid,)
 
 def sortByRating():
     listOfGames.sort(key=lambda game: game.rating, reverse=True)
