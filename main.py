@@ -1,10 +1,9 @@
 from tkinter import * #pylint:disable=unused-wildcard-import
-import json
+import steam_games
 
-#steam.json importen als dictionary
-jsonFile = open('steam.json')
-steamDictionary = json.load(jsonFile)
-jsonFile.close()
+listOfGames = steam_games.listOfGames
+for i in listOfGames:
+    print(i.name)
 
 #maak window
 window = Tk()
