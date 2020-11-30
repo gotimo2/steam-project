@@ -16,3 +16,7 @@ Timo Stroet (1777955) gotimo2
 
 
 INSTRUCTIE:
+
+- Clone de repo
+- `python main.py`
+- Klaar
