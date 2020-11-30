@@ -2,6 +2,7 @@
 steam project
 
 DOEL:
+Een werkende GUI met verschillende opties voor de gebruiker om te gebruiken en zo door de steam library heen te filteren om de verschillende games te laten weergeven
 
 
 
