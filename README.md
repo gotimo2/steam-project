@@ -6,9 +6,10 @@ DOEL:
 
 
 
-Sven Otten (1791596) SvenOtten
-Kyrill Westdorp (1783249) KyrillW
-David Diamantis (1792048) daviddiamantis
+Sven Otten (1791596) SvenOtten  
+Kyrill Westdorp (1783249) KyrillW  
+David Diamantis (1792048) daviddiamantis  
+Timo Stroet (1777955) gotimo2  
 
 
 
