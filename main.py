@@ -7,7 +7,7 @@ import time
 window = Tk()
 listOfGames = steam_games.listOfGames
 
-#log de games in de huidige volgorde naar log.txt zod
+#log de games in de huidige volgorde naar log.txt
 def logGames():
     with open("log.txt", "w") as file:
         for i in listOfGames:

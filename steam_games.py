@@ -45,6 +45,20 @@ for i in steamDictionary:
     ))
 
 def sortByName():
+    #inputList = listOfGames
+    #list_changed = False
+    #print(f"started / recursed with {lst}")
+    #for i in range(len(inputList) - 1):
+        #print(f"testing {inputList[i]} against {inputList[i + 1]}")
+    #    if inputList[i].name > inputList[i + 1].name:
+            #print("is smaller, switching...")
+    #        pop1 = inputList.pop(i)
+    #        pop2 = inputList.pop(i)
+    #        inputList.insert(i, pop2)
+    #        inputList.insert(i + 1, pop1)
+    #        list_changed = True
+    #if list_changed == True:
+    #    return sortByName()
     listOfGames.sort(key=lambda game: game.name)
 
 def sortByAppid():
@@ -61,3 +75,13 @@ def sortByAge():
 
 def sortByReleaseDate():
     listOfGames.sort(key=lambda game: game.release_date, reverse=True)
+
+def findById(id):
+    for i in listOfGames:
+        if i.appid == id:
+            return i 
+
+def findByName(name):
+    for i in listOfGames:
+        if i.name == name:
+            return i
