@@ -76,12 +76,21 @@ def sortByAge():
 def sortByReleaseDate():
     listOfGames.sort(key=lambda game: game.release_date, reverse=True)
 
-def findById(id):
-    for i in listOfGames:
-        if i.appid == id:
-            return i 
+def findById(id, index = 0):
+    try:
+        if listOfGames[index].id == id:
+            return listOfGames[index]
+    except IndexError:
+        return
+    else:
+        return findById(id, index + 1)
 
-def findByName(name):
-    for i in listOfGames:
-        if i.name == name:
-            return i
+
+def findByName(name, index = 0):
+    try:
+        if listOfGames[index].name.lower() == name.lower():
+            return listOfGames[index]
+    except IndexError:
+        return
+    else:
+        return findByName(name, index + 1)
