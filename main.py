@@ -1,3 +1,4 @@
+import os
 from tkinter import *  # pylint:disable=unused-wildcard-import
 from tkinter import ttk
 import steam_games
@@ -6,29 +7,34 @@ import time
 
 # maak window en maak een lokale """kopie""" van listofgames voor makkelijk gebruik en manipulatie
 root = Tk()
-root.title("Steam Tool")
+root.title("Steam Tool") #zet titel van window naar "Steam Tool"
 listOfGames = steam_games.listOfGames
 
 
-def raise_frame(frame):
+def raise_frame(frame): 
     frame.tkraise()
 
 
-
-
+#maak frames
 f1 = Frame(root)
 f2 = Frame(root)
 f3 = Frame(root)
 f4 = Frame(root)
 
 
-
+#refereer naar de frames als "news"
 for frame in (f1,f2, f3, f4):
     frame.grid(row=0, column=0, sticky='news')
 
 
+#maak canvas
 C = Canvas(master=root, bg="blue", height=250, width=300)
+
+#neem photoimage voor later?
 filename = PhotoImage(file="steam image3.png")
+
+#maak labels
+
 background_label = Label(master=f1, image=filename)
 background_label2 = Label(master=f2, image=filename)
 
@@ -43,39 +49,85 @@ background_label4.place(x=0, y=0, relwidth=1, relheight=1)
 C.pack
 
 
+#maak label voor naam?
+MenuLabel = Label(f1, text='Steam Tool', font=('Helvetica', 12, 'bold italic'), height=2, width=20)
+MenuLabel.pack()
+#maak menuknoppen
+overzichtgames = Button(f1, text='Overzicht games', command=lambda: raise_frame(f2))
+statistieken = Button(f1, text='Statistieken', command=lambda: raise_frame(f3))
+vriendenlijst = Button(f1, text='Vriendenlijst', command=lambda: raise_frame(f4))
+#pack de knoppen - bij maken direct packen is een slecht idee
+for i in [overzichtgames, statistieken, vriendenlijst]:
+    i.pack(pady=10)
 
-Label(f1, text='Steam Tool', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
+#headingfuncties -Tedieus, uitgebreid, alleen nodig want tkinter commands.
+#doen wat ze moeten doen tho ¯\_(ツ)_/¯
+def name_heading():
+    sortByName()
+    refreshGames()
 
-overzichtgames = Button(f1, text='Overzicht games', command=lambda: raise_frame(f2)).pack(pady=10)
-statistieken = Button(f1, text='Statistieken', command=lambda: raise_frame(f3)).pack(pady=10)
-vriendenlijst = Button(f1, text='Vriendenlijst', command=lambda: raise_frame(f4)).pack(pady=10)
+def rating_heading():
+    sortByRating()
+    refreshGames()
+
+def price_heading():
+    sortByPrice()
+    refreshGames()
+
+def age_heading():
+    sortByAge()
+    refreshGames()
+
+def releaseDateHeading():
+    sortByReleaseDate()
+    refreshGames()
+
+def appidHeading():
+    sortByAppid()
+    refreshGames()
+
+#launch game functie
+def launchGame():
+    treeSelected = tree.focus()
+    valueList = list(tree.item(treeSelected).values())
+    currentid = valueList[2][5]
+    print(valueList[2][5])
+    os.system(f"start \"\" steam://run/{currentid}")
 
 
+
+
+#maak tree
 tree = ttk.Treeview(f2, column=("column1", "column2", "column3","column4", "column5", "column6"), show='headings')
-tree.heading("#1", text="Naam")
-tree.heading("#2", text="Waardering")
-tree.heading("#3", text="Prijs")
-tree.heading("#4", text="Leeftijd")
-tree.heading("#5", text="Uitkomstdatum")
-tree.heading("#6", text="AppID")
+#configureer tree
+tree.heading("#1", text="Naam", command=name_heading)
+tree.heading("#2", text="Waardering", command=rating_heading)
+tree.heading("#3", text="Prijs", command=price_heading)
+tree.heading("#4", text="Leeftijd", command=age_heading)
+tree.heading("#5", text="Uitkomstdatum", command=releaseDateHeading)
+tree.heading("#6", text="AppID", command=appidHeading)
 
+
+
+
+#plaats tree
 tree.pack(pady=10, padx=10)
 
+##knoppen om te sorteren, --moeten naar heading veranderd worden-- zijn nu naar heading veranderd, dus onnodig. ik hou ze hier gewoon voor het geval dat.
+#Button(f2, text='Sorteer op naam', command=sortByName).pack(pady=10)
+#Button(f2, text='Sorteer games op uitkomstdatum', command=sortByReleaseDate).pack(pady=10)
+#Button(f2, text='Sorteer games op geschikte leeftijd', command=sortByAge).pack(pady=10)
+#Button(f2, text='Sorteer games op prijs', command=sortByPrice).pack(pady=10)
+#Button(f2, text='Sorteer games op Waardering', command=sortByRating).pack(pady=10)
+#Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
 
-Button(f2, text='Sorteer op naam', command=sortByName).pack(pady=10)
-Button(f2, text='Sorteer games op uitkomstdatum', command=sortByReleaseDate).pack(pady=10)
-Button(f2, text='Sorteer games op geschikte leeftijd', command=sortByAge).pack(pady=10)
-Button(f2, text='Sorteer games op prijs', command=sortByPrice).pack(pady=10)
-Button(f2, text='Sorteer games op Waardering', command=sortByRating).pack(pady=10)
-Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
-
+#knop voor steam launch
+Button(f2, text='Start game', command=launchGame).pack(pady=10, side=BOTTOM)
 
 
 
 
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-
-
 
 
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
@@ -85,9 +137,11 @@ Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 
+
 def refreshGames():
+    tree.delete(*tree.get_children())
     for i in listOfGames:
-        tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, i.rating, i.price, i.required_age, i.release_date, i.appid))
+        tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, round(i.rating, 2), i.price, i.required_age, i.release_date, i.appid))
 
 
 refreshGames()
