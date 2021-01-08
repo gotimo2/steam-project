@@ -4,6 +4,7 @@ import json
 jsonFile = open('steam.json')
 steamDictionary = json.load(jsonFile)
 jsonFile.close()
+global listOfGames
 
 #defineer game object
 class game:
@@ -45,36 +46,58 @@ for i in steamDictionary:
     ))
 
 def sortByName():
-    #inputList = listOfGames
-    #list_changed = False
-    #print(f"started / recursed with {lst}")
-    #for i in range(len(inputList) - 1):
-        #print(f"testing {inputList[i]} against {inputList[i + 1]}")
-    #    if inputList[i].name > inputList[i + 1].name:
-            #print("is smaller, switching...")
-    #        pop1 = inputList.pop(i)
-    #        pop2 = inputList.pop(i)
-    #        inputList.insert(i, pop2)
-    #        inputList.insert(i + 1, pop1)
-    #        list_changed = True
-    #if list_changed == True:
-    #    return sortByName()
-    listOfGames.sort(key=lambda game: game.name)
+    sortedlist = quicksort(listOfGames, 'name')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
 
 def sortByAppid():
-    listOfGames.sort(key=lambda game: game.appid,)
+    sortedlist = quicksort(listOfGames, 'appid')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
 
 def sortByRating():
-    listOfGames.sort(key=lambda game: game.rating, reverse=True)
+    sortedlist = quicksort(listOfGames, 'rating')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
 
 def sortByPrice():
-    listOfGames.sort(key=lambda game: game.price, reverse=True)
+    sortedlist = quicksort(listOfGames, 'price')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
+
+def quicksort(inputList, attribute):
+    #attribute = getattr(game, attr)
+    if len(inputList) < 2:
+        return inputList
+    low, middle, high = [], [], []
+    pivot = getattr(inputList[len(inputList)//2], attribute)
+    for i in inputList:
+        n = getattr(i, attribute)
+        if pivot > n:
+            low.append(i)
+        elif pivot == n:
+            middle.append(i)
+        elif pivot < n:
+            high.append(i)
+    return quicksort(low, attribute) + middle + quicksort(high, attribute)
+
+
 
 def sortByAge():
-    listOfGames.sort(key=lambda game: game.required_age, reverse=True)
+    sortedlist = quicksort(listOfGames, 'required_age')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
 
 def sortByReleaseDate():
-    listOfGames.sort(key=lambda game: game.release_date, reverse=True)
+    sortedlist = quicksort(listOfGames, 'release_date')
+    listOfGames.clear()
+    for i in sortedlist:
+        listOfGames.append(i)
 
 def findById(id, index = 0):
     try:

@@ -94,6 +94,9 @@ def launchGame():
     print(valueList[2][5])
     os.system(f"start \"\" steam://run/{currentid}")
 
+def reverseList():
+    listOfGames.reverse()
+    refreshGames()
 
 
 
@@ -121,14 +124,12 @@ tree.pack(pady=10, padx=10)
 #Button(f2, text='Sorteer games op Waardering', command=sortByRating).pack(pady=10)
 #Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
 
-#knop voor steam launch
+#knop voor steam launch en lijst omdraaien
 Button(f2, text='Start game', command=launchGame).pack(pady=10, side=BOTTOM)
+Button(f2, text = 'Lijst omkeren', command=reverseList).pack(pady=10)
 
-
-
-
+#knoppen en labels voor welkom en teruggaan
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-
 
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
@@ -160,8 +161,6 @@ print(listOfGames[0].name)
 
 def refreshLabelLoop():
     root.after(50, refreshLabelLoop)
-
-
 
 
 # run window
