@@ -120,3 +120,110 @@ def findByName(name, index = 0): #zelfde
         return #hierboven
     else:
         return findByName(name, index + 1)
+
+def makeList(attribuut):
+    #Maakt lijst van gewenst attribuut
+    if attribuut == 1: #1 is class price
+        lijst = []
+        for i in range(len(listOfGames)):
+            lijst.append(listOfGames[i].price)
+    elif attribuut == 2:
+        lijst = []
+        for i in range(len(listOfGames)):
+            lijst.append(listOfGames[i].rating)
+    return lijst
+
+
+def mean(lst):
+    #Geeft gemiddelde van de gegeven lijst
+    gemiddelde = sum(lst) / len(lst)
+    return round(gemiddelde, 2)
+
+def median(lst):
+    #Geeft mediaan van de gegeven lijst
+    lst = sorted(lst)
+    if len(lst) % 2 == 0:
+        index_1 = (len(lst) // 2) - 1
+        index_2 = int(-(-len(lst) // 2))
+        med = (lst[index_1] + lst[index_2]) / 2
+        return round(med, 2)
+    else:
+        med = lst[len(lst) // 2]
+        return round(med, 2)
+
+def q1(lst):
+    #Geeft q1 van gegeven van de lijst
+    lijst = []
+    lst = sorted(lst)
+    index_1 = (len(lst) // 2) - 1
+    index_2 = int(-(-len(lst) // 2))
+    if lst[index_1] == median(lst) and lst[index_2] == median(lst) and len(lst) % 2 == 0:
+        lijst.append(lst[index_1])
+    for i in lst:
+        if i < median(lst):
+            lijst.append(i)
+    kwartiel_1 = median(lijst)
+
+    return kwartiel_1
+
+
+def q3(lst):
+    #Geeft q3 van gegeven lijst
+    lijst = []
+    lst = sorted(lst)
+    index_1 = (len(lst) // 2) - 1
+    index_2 = int(-(-len(lst) // 2))
+    if lst[index_1] == median(lst) and lst[index_2] == median(lst) and len(lst) % 2 == 0:
+        lijst.append(lst[index_2])
+    for i in lst:
+        if i > median(lst):
+            lijst.append(i)
+    kwartiel_3 = median(lijst)
+
+    return kwartiel_3
+
+
+def var(lst):
+    #Geeft variantie van de gegeven lijst
+    lijst = []
+    for i in lst:
+        afwijking = i - mean(lst)
+        lijst.append(afwijking)
+    kwadraat_lijst = []
+    for x in lijst:
+        kwadraat = x**2
+        kwadraat_lijst.append(kwadraat)
+    variantie = mean(kwadraat_lijst)
+    return variantie
+
+
+def std(lst):
+    #Geeft standaarddeviatie van de gegeven lijst
+    return round(var(lst)**(1/2), 2)
+
+
+def freq(lst):
+    #Geeft dictionary met de elementen als keys en de frequentie als value
+    freqs = {}
+    for i in lst:
+        if i in freqs:
+            freqs[i] = freqs[i] + 1
+        else:
+            freqs[i] = 1
+    return freqs
+
+
+def modes(lst):
+    #Geeft gesorteerde lijst van modussen van gegeven lijst
+    values = []
+    for key, value in freq(lst).items():
+        values.append(value)
+    maxi = values[0]
+    for x in values:
+        if x > maxi:
+            maxi = x
+    modi = []
+    for key, value in freq(lst).items():
+        if value == maxi:
+            modi.append(key)
+    return sorted(modi)
