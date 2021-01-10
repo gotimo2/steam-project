@@ -24,25 +24,27 @@ class game:
         self.achievements = achievements
 
 #maak lijst met iedere game
-listOfGames = []   
-for i in steamDictionary:
-    listOfGames.append(
-    game(
-        name = i["name"],
-        price = i["price"],
-        release_date = i["release_date"],
-        developer = i["developer"],
-        positive_ratings = i["positive_ratings"],
-        negative_ratings = i["negative_ratings"],
-        rating = (i["positive_ratings"] / (i["positive_ratings"] + i["negative_ratings"])) * 100,
-        publisher = i["publisher"],
-        appid = i["appid"],
-        platforms = i["platforms"],
-        required_age = i["required_age"],
-        categories = i["categories"],
-        genres = i["genres"],
-        achievements = i["achievements"]
-    ))
+listOfGames = []
+def regenGameList():
+    listOfGames.clear()
+    for i in steamDictionary:
+        listOfGames.append(
+        game(
+            name = i["name"],
+            price = i["price"],
+            release_date = i["release_date"],
+            developer = i["developer"],
+            positive_ratings = i["positive_ratings"],
+            negative_ratings = i["negative_ratings"],
+            rating = (i["positive_ratings"] / (i["positive_ratings"] + i["negative_ratings"])) * 100,
+            publisher = i["publisher"],
+            appid = i["appid"],
+            platforms = i["platforms"],
+            required_age = i["required_age"],
+            categories = i["categories"],
+            genres = i["genres"],
+            achievements = i["achievements"]
+        ))
     
 
 #sorteeruncties, iedere functie gebruikt quicksort + een attribuut
@@ -62,6 +64,22 @@ def quicksort(inputList, attribute): #neem inputlist + een attribuut om de lijst
         elif pivot < n:
             high.append(i)
     return quicksort(low, attribute) + middle + quicksort(high, attribute) #blijf dit dan recursief herhalen totdat de lijst gesorteerd is
+
+#quicksort2, voor als je quicksort op waarden ipv attributen
+def quicksort2(inputList): 
+    if len(inputList) < 2: 
+        return inputList
+    low, middle, high = [], [], [] 
+    pivot = inputList[len(inputList)//2] 
+    for i in inputList: 
+        n = i 
+        if pivot > n: 
+            low.append(i)
+        elif pivot == n:
+            middle.append(i)
+        elif pivot < n:
+            high.append(i)
+    return quicksort2(low) + middle + quicksort2(high)
 
 def sortByName():
     sortedlist = quicksort(listOfGames, 'name')
@@ -121,17 +139,11 @@ def findByName(name, index = 0): #zelfde
     else:
         return findByName(name, index + 1)
 
-def makeList(attribuut):
-    #Maakt lijst van gewenst attribuut
-    if attribuut == 1: #1 is class price
-        lijst = []
-        for i in range(len(listOfGames)):
-            lijst.append(listOfGames[i].price)
-    elif attribuut == 2:
-        lijst = []
-        for i in range(len(listOfGames)):
-            lijst.append(listOfGames[i].rating)
-    return lijst
+def makeList(attribuut, base=listOfGames):
+    newlist = []
+    for i in base:
+        newlist.append(getattr(i, attribuut))
+    return newlist
 
 
 def mean(lst):
@@ -141,7 +153,7 @@ def mean(lst):
 
 def median(lst):
     #Geeft mediaan van de gegeven lijst
-    lst = sorted(lst)
+    lst = quicksort2(lst)
     if len(lst) % 2 == 0:
         index_1 = (len(lst) // 2) - 1
         index_2 = int(-(-len(lst) // 2))
@@ -184,17 +196,12 @@ def q3(lst):
 
 
 def var(lst):
-    #Geeft variantie van de gegeven lijst
-    lijst = []
+    avg = sum(lst) / len(lst)
+    totaldiff = 0
     for i in lst:
-        afwijking = i - mean(lst)
-        lijst.append(afwijking)
-    kwadraat_lijst = []
-    for x in lijst:
-        kwadraat = x**2
-        kwadraat_lijst.append(kwadraat)
-    variantie = mean(kwadraat_lijst)
-    return variantie
+        totaldiff += (i - avg) ** 2
+    return totaldiff / len(lst)
+
 
 
 def std(lst):
@@ -215,15 +222,10 @@ def freq(lst):
 
 def modes(lst):
     #Geeft gesorteerde lijst van modussen van gegeven lijst
-    values = []
-    for key, value in freq(lst).items():
-        values.append(value)
-    maxi = values[0]
-    for x in values:
-        if x > maxi:
-            maxi = x
-    modi = []
-    for key, value in freq(lst).items():
-        if value == maxi:
-            modi.append(key)
-    return sorted(modi)
+    quicksort2(lst)
+    modussen = list()
+    frequence = freq(lst)
+    for i in frequence:
+        if frequence.get(i) == max(frequence.values()):
+            modussen.append(i)
+    return modussen
