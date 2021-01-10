@@ -45,7 +45,8 @@ def regenGameList():
             genres = i["genres"],
             achievements = i["achievements"]
         ))
-    
+
+regenGameList()
 
 #sorteeruncties, iedere functie gebruikt quicksort + een attribuut
 
