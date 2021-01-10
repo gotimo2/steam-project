@@ -24,7 +24,7 @@ f4 = Frame(root)
 
 #refereer naar de frames als "news"
 for frame in (f1,f2, f3, f4):
-    frame.grid(row=0, column=0, sticky='news')
+    frame.grid(row=0, column=0,sticky='news')
 
 
 #maak canvas
@@ -101,7 +101,12 @@ def reverseList():
 
 
 #maak tree
-tree = ttk.Treeview(f2, column=("column1", "column2", "column3","column4", "column5", "column6"), show='headings')
+#maak tree met scrollbar
+tree_scroll=Scrollbar(f2)
+tree_scroll.pack(side=RIGHT,fill=Y)
+
+tree = ttk.Treeview(f2,yscrollcommand=tree_scroll.set, column=("column1", "column2", "column3","column4", "column5", "column6"), show='headings')
+tree_scroll.configure(command=tree.yview)
 #configureer tree
 tree.heading("#1", text="Naam", command=name_heading)
 tree.heading("#2", text="Waardering", command=rating_heading)
