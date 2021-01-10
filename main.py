@@ -88,11 +88,11 @@ def appidHeading():
 
 #launch game functie
 def launchGame():
-    treeSelected = tree.focus()
-    valueList = list(tree.item(treeSelected).values())
-    currentid = valueList[2][5]
-    print(valueList[2][5])
-    os.system(f"start \"\" steam://run/{currentid}")
+    treeSelected = tree.focus() #pak gefocuste item van de treeview
+    valueList = list(tree.item(treeSelected).values()) #maak een list van de values ervan
+    currentid = valueList[2][5] #pak de steamid ervan
+    #print(valueList[2][5]) #print de steamid
+    os.system(f"start \"\" steam://run/{currentid}") #open de steam://run voor de gekozen game
 
 def reverseList():
     listOfGames.reverse()
@@ -140,8 +140,8 @@ Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 
 def refreshGames():
-    tree.delete(*tree.get_children())
-    for i in listOfGames:
+    tree.delete(*tree.get_children()) #leeg de tree
+    for i in listOfGames: #plaats de list opnieuw
         tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, round(i.rating, 2), i.price, i.required_age, i.release_date, i.appid))
 
 
@@ -156,11 +156,11 @@ def logGames():
 
 sortByAppid()
 
-print(listOfGames[0].name)
+#print(listOfGames[0].name)
 
 
-def refreshLabelLoop():
-    root.after(50, refreshLabelLoop)
+#def refreshLabelLoop():
+    #root.after(50, refreshLabelLoop)
 
 
 # run window
