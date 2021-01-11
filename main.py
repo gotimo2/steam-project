@@ -182,6 +182,7 @@ sortByAppid()
                                 TI COMPONENT CODES
 -----------------------------------------------------------
 """""
+
 #def AfstandSensor(): #Checkt of gebruiker achter pc zit en past de status aan.
 
 
