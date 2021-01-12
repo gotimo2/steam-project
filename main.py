@@ -26,8 +26,10 @@ for frame in (f1,f2, f3, f4):
 
 #maak canvas
 C = Canvas(master=root, bg="blue", height=250, width=300)
+
 #neem photoimage voor later?
 filename = PhotoImage(file="steam image3.png")
+
 #maak labels
 background_label = Label(master=f1, image=filename)
 background_label2 = Label(master=f2, image=filename)
@@ -42,6 +44,7 @@ C.pack
 #maak label voor naam?
 MenuLabel = Label(f1, text='Steam Tool', font=('Helvetica', 12, 'bold italic'), height=2, width=20)
 MenuLabel.pack()
+
 #maak menuknoppen
 overzichtgames = Button(f1, text='Overzicht games', command=lambda: raise_frame(f2))
 statistieken = Button(f1, text='Statistieken', command=lambda: raise_frame(f3))
@@ -83,6 +86,7 @@ icon3 = (CanvasStatus3)
 icoon3 = status_circle(70, 20, 7, icon3)
 icon4 = (CanvasStatus4)
 icoon4 = status_circle(70, 20, 7, icon4)
+
 #gebruiker status labels
 StatusGebruiker = Label(CanvasStatus, text= 'Status:')
 StatusGebruiker.pack(side=BOTTOM, anchor=SE,pady=10,padx=20)
@@ -98,21 +102,27 @@ StatusGebruiker4.pack(side=BOTTOM, anchor=SE,pady=10,padx=20)
 def name_heading():
     sortByName()
     refreshGames()
+
 def rating_heading():
     sortByRating()
     refreshGames()
+
 def price_heading():
     sortByPrice()
     refreshGames()
+
 def age_heading():
     sortByAge()
     refreshGames()
+
 def releaseDateHeading():
     sortByReleaseDate()
     refreshGames()
+
 def appidHeading():
     sortByAppid()
     refreshGames()
+
 #launch game functie
 def launchGame():
     treeSelected = tree.focus() #pak gefocuste item van de treeview
@@ -120,16 +130,19 @@ def launchGame():
     currentid = valueList[2][5] #pak de steamid ervan
     #print(valueList[2][5]) #print de steamid
     os.system(f"start \"\" steam://run/{currentid}") #open de steam://run voor de gekozen game
+
 def reverseList():
     listOfGames.reverse()
     refreshGames()
 
 #maak tree
+
 #maak tree met scrollbar
 tree_scroll=Scrollbar(f2)
 tree_scroll.pack(side=RIGHT,fill=Y)
 tree = ttk.Treeview(f2,yscrollcommand=tree_scroll.set, column=("column1", "column2", "column3","column4", "column5", "column6"), show='headings', height=25)
 tree_scroll.configure(command=tree.yview)
+
 #configureer tree
 tree.heading("#1", text="Naam", command=name_heading)
 tree.heading("#2", text="Waardering", command=rating_heading)
@@ -148,9 +161,12 @@ tree.pack(pady=10, padx=10)
 #Button(f2, text='Sorteer games op prijs', command=sortByPrice).pack(pady=10)
 #Button(f2, text='Sorteer games op Waardering', command=sortByRating).pack(pady=10)
 #Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
+
+
 #knop voor steam launch en lijst omdraaien
 Button(f2, text='Start game', command=launchGame).pack(pady=10, side=BOTTOM)
 Button(f2, text = 'Lijst omkeren', command=reverseList).pack(pady=10)
+
 #knoppen en labels voor welkom en teruggaan
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
@@ -158,18 +174,18 @@ Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
+filterEntry = Entry(f2)
+filterEntry.pack(padx = 20, pady = 30)
+
+#filterPicker = OptionMenu(f2, 'naam', 'waardering', 'prijs', 'minimumleeftijd', 'appID', 'uitkomstdatum')
+#filterPicker.pack(padx = 20, pady = 30)
+
 def refreshGames():
     tree.delete(*tree.get_children()) #leeg de tree
     for i in listOfGames: #plaats de list opnieuw
         tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, round(i.rating, 2), i.price, i.required_age, i.release_date, i.appid))
 
 refreshGames()
-# log de games in de huidige volgorde naar log.txt zod
-def logGames():
-    with open("log.txt", "w") as file:
-        for i in listOfGames:
-            file.write(
-                f'{i.name}: {i.price}, {i.release_date} - {round(i.rating, 1)}% positive reviews, ({round(i.required_age, 0)}+) - product {i.appid}\n')
 
 sortByAppid()
 #print(listOfGames[0].name)

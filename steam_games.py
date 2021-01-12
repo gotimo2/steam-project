@@ -1,9 +1,12 @@
 
 import json
+import datetime
 #steam.json importen als dictionary
 jsonFile = open('steam.json') 
 steamDictionary = json.load(jsonFile)
 jsonFile.close()
+
+currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
 
 #defineer game object
 class game:
@@ -26,7 +29,8 @@ class game:
 #maak lijst met iedere game
 listOfGames = []
 def regenGameList():
-    listOfGames.clear()
+    for i in listOfGames:
+        del i
     for i in steamDictionary:
         listOfGames.append(
         game(
@@ -119,6 +123,13 @@ def sortByReleaseDate():
     for i in sortedlist:
         listOfGames.append(i)
 
+# legacy logGames() functie
+def logGames():
+    with open("log.txt", "w") as file:
+        for i in listOfGames:
+            file.write(
+                f'{i.name}: {i.price}, {i.release_date} - {round(i.rating, 1)}% positive reviews, ({round(i.required_age, 0)}+) - product {i.appid}\n')
+
 #zoekfuncties        
         
 def findById(id, index = 0): #neem appid, start bij index 0 als er geen andere index wordt opgegeven
@@ -129,7 +140,6 @@ def findById(id, index = 0): #neem appid, start bij index 0 als er geen andere i
         return  #geef dan niks terug, want dan zit dat item niet in de lijst
     else: #als er geen indexerror is gebeurd maar het huidige item is niet de goede
         return findById(id, index + 1) #doe dan dezelde funtie met een hogere index, dus bekijk het volgende item
-
 
 def findByName(name, index = 0): #zelfde
     try: #principe
@@ -145,7 +155,6 @@ def makeList(attribuut, base=listOfGames):
     for i in base:
         newlist.append(getattr(i, attribuut))
     return newlist
-
 
 def mean(lst):
     #Geeft gemiddelde van de gegeven lijst
@@ -179,7 +188,6 @@ def q1(lst):
 
     return kwartiel_1
 
-
 def q3(lst):
     #Geeft q3 van gegeven lijst
     lijst = []
@@ -195,7 +203,6 @@ def q3(lst):
 
     return kwartiel_3
 
-
 def var(lst):
     avg = sum(lst) / len(lst)
     totaldiff = 0
@@ -203,12 +210,9 @@ def var(lst):
         totaldiff += (i - avg) ** 2
     return totaldiff / len(lst)
 
-
-
 def std(lst):
     #Geeft standaarddeviatie van de gegeven lijst
     return round(var(lst)**(1/2), 2)
-
 
 def freq(lst):
     #Geeft dictionary met de elementen als keys en de frequentie als value
@@ -220,7 +224,6 @@ def freq(lst):
             freqs[i] = 1
     return freqs
 
-
 def modes(lst):
     #Geeft gesorteerde lijst van modussen van gegeven lijst
     quicksort2(lst)
@@ -230,3 +233,43 @@ def modes(lst):
         if frequence.get(i) == max(frequence.values()):
             modussen.append(i)
     return modussen
+
+#filterfuncties
+
+def filterByName(que):
+    regenGameList()
+    for i in listOfGames:
+        if que not in i.name:
+            del i
+
+def filterByAppID(que):
+    regenGameList()
+    for i in listOfGames:
+        if i.appid != que:
+            del i
+
+def filterByPrice(que_high, que_low = 0):
+    regenGameList()
+    for i in listOfGames:
+        if que_high < i.price or que_low > i.price:
+            del i
+
+def filterByRating(que_high, que_low, que_number = 100):
+    regenGameList()
+    for i in listOfGames:
+        if que_high < i.rating or que_low > i.rating or (i.positive_ratings + i.negative_ratings) < que_number:
+            del i
+
+def filterByAge(que_high, que_low = 0):
+    regenGameList()
+    for i in listOfGames:
+        if que_high < i.required_age or que_low > i.required_age:
+            del i
+
+def filterByRelease(que_low, que_high = currentDate):
+    regenGameList()
+    for i in listOfGames:
+        if que_high < i.release_date or que_low > i.release_date:
+            del i
+    pass
+    
