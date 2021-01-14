@@ -201,7 +201,7 @@ vriendenlijst=['Sven' ,'Svenno02',184596,'Cities:Skylines', 1.5,'F1 2018', 2.5, 
 vriendenlijst2=['Pascal' ,'Pascal134', 174595,   'The Forest', 30, 'Hollow Knight', 0.5, 'F1 2018', 30]
 vriendenlijst3=['Kyrill', 'Koraal', 937592,  'Portal2', 21, 'Tomb Raider', 12.5, 'F1 2018', 25]
 vriendenlijst4=['David', 'Davito',  248392,  'Stardew Valley', 105, 'Rust', 32.5, 'F1 2018', 104]
-lijst=['Pascal','sven','Kyrill','david']
+lijst=['Pascal','Sven','Kyrill','David']
 
 def insertmentvoortree(vriendenlijst):
     res=(vriendenlijst[0],vriendenlijst[1],vriendenlijst[2],vriendenlijst[3],str(vriendenlijst[4])+' '+'uur',vriendenlijst[5],str(vriendenlijst[6])+' '+'uur',vriendenlijst[7],str(vriendenlijst[8])+' '+'uur')
@@ -234,7 +234,7 @@ Button(f2, text = 'Lijst omkeren', command=reverseList).pack(pady=10)
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
+
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 filterEntry = Entry(f2)
