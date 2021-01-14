@@ -4,7 +4,7 @@ from tkinter import ttk
 import steam_games
 from steam_games import *  # pylint:disable=unused-wildcard-import
 import time
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(0)
 
