@@ -4,9 +4,15 @@ from tkinter import ttk
 import steam_games
 from steam_games import *  # pylint:disable=unused-wildcard-import
 import time
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(0)
+
+#import gpio, als het beschikbaar is.
+gpioMode = True
+try:
+    import RPi.GPIO as GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(0)
+except:
+    gpioMode = False
 
 # maak window en maak een lokale """kopie""" van listofgames voor makkelijk gebruik en manipulatie
 root = Tk()
@@ -271,39 +277,41 @@ sortByAppid()
 -----------------------------------------------------------
 """""
 
+if gpioMode:
+    # Pins voor de sensor
+    sr04_trig = 20
+    sr04_echo = 21
 
-# Pins voor de sensor
-sr04_trig = 20
-sr04_echo = 21
-
-GPIO.setup(sr04_trig, GPIO.OUT)
-GPIO.setup(sr04_echo, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
-
-def AfstandSensor(trig_pin, echo_pin):  # Checkt of gebruiker achter pc zit en past de status aan.
-    GPIO.output(trig_pin, GPIO.HIGH)
-    time.sleep(2)
-    GPIO.output(trig_pin, GPIO.LOW)
-
-    while GPIO.input(echo_pin) == False:
-        begin = time.time()
-
-    while GPIO.input(echo_pin) == True:
-        eind = time.time()
-        tijd = eind - begin
-        afstand_cm = tijd * 17165
-    return afstand_cm
+    GPIO.setup(sr04_trig, GPIO.OUT)
+    GPIO.setup(sr04_echo, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-def Refresh_status():
-    if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
-        icon(1)
-    else:
-        icon(0)
-    root.after(10000, Refresh_status)
+    def AfstandSensor(trig_pin, echo_pin):  # Checkt of gebruiker achter pc zit en past de status aan.
+        GPIO.output(trig_pin, GPIO.HIGH)
+        time.sleep(2)
+        GPIO.output(trig_pin, GPIO.LOW)
+
+        while GPIO.input(echo_pin) == False:
+            begin = time.time()
+
+        while GPIO.input(echo_pin) == True:
+            eind = time.time()
+            tijd = eind - begin
+            afstand_cm = tijd * 17165
+        return afstand_cm
 
 
-Refresh_status()
+    def Refresh_status():
+        if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
+            icon(1)
+        else:
+            icon(0)
+        root.after(10000, Refresh_status)
+
+
+    Refresh_status()
+else:
+    pass
 
 # run window
 raise_frame(f1)
