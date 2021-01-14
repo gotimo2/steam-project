@@ -159,63 +159,63 @@ tree.pack(pady=10, padx=10)
 tree_scroll=Scrollbar(f4)
 tree_scroll.pack(side=RIGHT,fill=Y)
 
-tree2= ttk.Treeview(f4,yscrollcommand=tree_scroll.set,height=25, column=("column1", "column2", "column3","column4", "column5", "column6","column7","column8","column9"), show='headings')
+tree2= ttk.Treeview(f4,yscrollcommand=tree_scroll.set,height=25, column=("column1", "column2", "column3","column4", "column5", "column6","column7","column8","column9",), show='headings')
 tree_scroll.configure(command=tree.yview)
 #configureer tree
-tree2.heading("#1", text="Naam")
-tree2.column("#1", minwidth=0, width=100, stretch=NO)
-tree2.heading("#2", text="gebruiker")
-tree2.column("#2", minwidth=0, width=75, stretch=NO)
+tree2.heading("#1", text="gebruiker")
+tree2.column("#1", minwidth=0, width=75, stretch=NO)
 
-tree2.heading("#3", text="vriendcode")
-tree2.column("#3", minwidth=0, width=75, stretch=NO)
-tree2.heading("#4", text="game")
-tree2.column("#4", minwidth=0, width=100, stretch=NO)
-tree2.heading("#5", text="speeltijd")
-tree2.column("#5", minwidth=0, width=75, stretch=NO)
-tree2.heading("#6", text="game")
-tree2.column("#6", minwidth=0, width=100, stretch=NO)
-tree2.heading("#7", text="speeltijd ")
-tree2.column("#7", minwidth=0, width=75, stretch=NO)
-tree2.heading("#8", text="game")
-tree2.column("#8", minwidth=0, width=100, stretch=NO)
-tree2.heading("#9", text="speeltijd")
+tree2.heading("#2", text="vriendcode")
+tree2.column("#2", minwidth=0, width=75, stretch=NO)
+tree2.heading("#3", text="game")
+tree2.column("#3", minwidth=0, width=100, stretch=NO)
+tree2.heading("#4", text="speeltijd")
+tree2.column("#4", minwidth=0, width=75, stretch=NO)
+tree2.heading("#5", text="game")
+tree2.column("#5", minwidth=0, width=100, stretch=NO)
+tree2.heading("#6", text="speeltijd ")
+tree2.column("#6", minwidth=0, width=75, stretch=NO)
+tree2.heading("#7", text="game")
+tree2.column("#7", minwidth=0, width=100, stretch=NO)
+tree2.heading("#8", text="speeltijd")
+tree2.column("#8", minwidth=0, width=75, stretch=NO)
+tree2.heading("#9", text="status")
 tree2.column("#9", minwidth=0, width=75, stretch=NO)
 
 
 
 tree2
+vriendenlijst={'Pascal': {'name': 'pascal134', 'vriendcode': 174595,  'game1': 'Cities:Skylines', 'game1st':1.5, 'game2':'F1 2018', 'game2st':2.5, 'game3':'We Were Here Together','game3st':5,'status':'online'}}
+vriendenlijst['Sven'] = {'name': 'svenno02', 'vriendcode': 184596, 'game1': 'The Forest', 'game1st':3, 'game2': 'Hollow Knight','game2st': 0.5, 'game3': 'F1 2018','game3st': 30,'status':'offline'}
+vriendenlijst['Kyrill'] = {'name': 'Koraal', 'vriendcode': 937592, 'game1': 'Portal2','game1st': 21, 'game2': 'Tomb Raider','game2st': 12.5, 'game3': 'F1 2018','game3st': 25,'status':'offline'}
+vriendenlijst['David'] = {'name': 'Davito', 'vriendcode': 248392, 'game1': 'Stardew Valley','game1st': 105, 'game2': 'Rust','game2st': 32.5, 'game3': 'F1 2018','game3st': 104,'status':'online'}
 
+dictonarylijst=['name', 'vriendcode', 'game1','game1st', 'game2','game2st', 'game3','game3st','status']
 
-
-
-
+def insertment(target):
+    benodigdelijst=[]
+    for i in dictonarylijst:
+        benodigdelijst.append(vriendenlijst[target][i])
+    return benodigdelijst
+def betereinsertment(target):
+    values=insertment(target)[0],insertment(target)[1],insertment(target)[2],insertment(target)[3],insertment(target)[4],insertment(target)[5],insertment(target)[6],insertment(target)[7],insertment(target)[8]
+    return values
 
 lijstmetgamesvriend1=['Cities:Skylines','F1 2018','We Were Here Together']
 lijstmetgamesvriend2=['The Forest','Hollow Knight','F1 2018']
 lijstmetgamesvriend3=['Portal2','Tomb Raider','F1 2018']
 lijstmetgamesvriend4=['Stardew Valley','Rust','F1 2018']
 
-
-vriendenlijst=['Sven' ,'Svenno02',184596,'Cities:Skylines', 1.5,'F1 2018', 2.5, 'Everything', 5]
-vriendenlijst2=['Pascal' ,'Pascal134', 174595,   'The Forest', 30, 'Hollow Knight', 0.5, 'F1 2018', 30]
-vriendenlijst3=['Kyrill', 'Koraal', 937592,  'Portal2', 21, 'Tomb Raider', 12.5, 'F1 2018', 25]
-vriendenlijst4=['David', 'Davito',  248392,  'Stardew Valley', 105, 'Rust', 32.5, 'F1 2018', 104]
-lijst=['Pascal','Sven','Kyrill','David']
-
-def insertmentvoortree(vriendenlijst):
-    res=(vriendenlijst[0],vriendenlijst[1],vriendenlijst[2],vriendenlijst[3],str(vriendenlijst[4])+' '+'uur',vriendenlijst[5],str(vriendenlijst[6])+' '+'uur',vriendenlijst[7],str(vriendenlijst[8])+' '+'uur')
-    return res
 #plaats tree
-def tree2insert(vriendenlijst):
+def tree2insert(target):
     tree2.pack(pady=10, padx=10)
     tree2.insert(parent='', index='end', text="game",
-                 values=(insertmentvoortree(vriendenlijst)))
-    
-tree2insert(vriendenlijst)
-tree2insert(vriendenlijst2)
-tree2insert(vriendenlijst3)
-tree2insert(vriendenlijst4)
+                     values=(betereinsertment(target)))
+
+tree2insert('Pascal')
+tree2insert('Sven')
+tree2insert('Kyrill')
+tree2insert('David')
 
 ##knoppen om te sorteren, --moeten naar heading veranderd worden-- zijn nu naar heading veranderd, dus onnodig. ik hou ze hier gewoon voor het geval dat.
 #Button(f2, text='Sorteer op naam', command=sortByName).pack(pady=10)
@@ -234,7 +234,7 @@ Button(f2, text = 'Lijst omkeren', command=reverseList).pack(pady=10)
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-
+Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 filterEntry = Entry(f2)
