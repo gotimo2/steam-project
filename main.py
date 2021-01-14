@@ -136,8 +136,8 @@ def reverseList():
     refreshGames()
 
 #maak tree
-
 #maak tree met scrollbar
+
 tree_scroll=Scrollbar(f2)
 tree_scroll.pack(side=RIGHT,fill=Y)
 tree = ttk.Treeview(f2,yscrollcommand=tree_scroll.set, column=("column1", "column2", "column3","column4", "column5", "column6"), show='headings', height=25)
@@ -154,6 +154,69 @@ tree.heading("#6", text="AppID", command=appidHeading)
 
 #plaats tree
 tree.pack(pady=10, padx=10)
+#maak tree met scrollbar
+
+tree_scroll=Scrollbar(f4)
+tree_scroll.pack(side=RIGHT,fill=Y)
+
+tree2= ttk.Treeview(f4,yscrollcommand=tree_scroll.set,height=25, column=("column1", "column2", "column3","column4", "column5", "column6","column7","column8","column9"), show='headings')
+tree_scroll.configure(command=tree.yview)
+#configureer tree
+tree2.heading("#1", text="Naam")
+tree2.column("#1", minwidth=0, width=100, stretch=NO)
+tree2.heading("#2", text="gebruiker")
+tree2.column("#2", minwidth=0, width=75, stretch=NO)
+
+tree2.heading("#3", text="vriendcode")
+tree2.column("#3", minwidth=0, width=75, stretch=NO)
+tree2.heading("#4", text="game")
+tree2.column("#4", minwidth=0, width=100, stretch=NO)
+tree2.heading("#5", text="speeltijd")
+tree2.column("#5", minwidth=0, width=75, stretch=NO)
+tree2.heading("#6", text="game")
+tree2.column("#6", minwidth=0, width=100, stretch=NO)
+tree2.heading("#7", text="speeltijd ")
+tree2.column("#7", minwidth=0, width=75, stretch=NO)
+tree2.heading("#8", text="game")
+tree2.column("#8", minwidth=0, width=100, stretch=NO)
+tree2.heading("#9", text="speeltijd")
+tree2.column("#9", minwidth=0, width=75, stretch=NO)
+
+
+
+tree2
+
+
+
+
+
+
+lijstmetgamesvriend1=['Cities:Skylines','F1 2018','We Were Here Together']
+lijstmetgamesvriend2=['The Forest','Hollow Knight','F1 2018']
+lijstmetgamesvriend3=['Portal2','Tomb Raider','F1 2018']
+lijstmetgamesvriend4=['Stardew Valley','Rust','F1 2018']
+
+
+vriendenlijst=['Sven' ,'Svenno02',184596,'Cities:Skylines', 1.5,'F1 2018', 2.5, 'Everything', 5]
+vriendenlijst2=['Pascal' ,'Pascal134', 174595,   'The Forest', 30, 'Hollow Knight', 0.5, 'F1 2018', 30]
+vriendenlijst3=['Kyrill', 'Koraal', 937592,  'Portal2', 21, 'Tomb Raider', 12.5, 'F1 2018', 25]
+vriendenlijst4=['David', 'Davito',  248392,  'Stardew Valley', 105, 'Rust', 32.5, 'F1 2018', 104]
+lijst=['Pascal','sven','Kyrill','david']
+
+def insertmentvoortree(vriendenlijst):
+    res=(vriendenlijst[0],vriendenlijst[1],vriendenlijst[2],vriendenlijst[3],str(vriendenlijst[4])+' '+'uur',vriendenlijst[5],str(vriendenlijst[6])+' '+'uur',vriendenlijst[7],str(vriendenlijst[8])+' '+'uur')
+    return res
+#plaats tree
+def tree2insert(vriendenlijst):
+    tree2.pack(pady=10, padx=10)
+    tree2.insert(parent='', index='end', text="game",
+                 values=(insertmentvoortree(vriendenlijst)))
+    
+tree2insert(vriendenlijst)
+tree2insert(vriendenlijst2)
+tree2insert(vriendenlijst3)
+tree2insert(vriendenlijst4)
+
 ##knoppen om te sorteren, --moeten naar heading veranderd worden-- zijn nu naar heading veranderd, dus onnodig. ik hou ze hier gewoon voor het geval dat.
 #Button(f2, text='Sorteer op naam', command=sortByName).pack(pady=10)
 #Button(f2, text='Sorteer games op uitkomstdatum', command=sortByReleaseDate).pack(pady=10)
