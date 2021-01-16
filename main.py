@@ -258,9 +258,9 @@ filterEntry.pack(padx = 20, pady = 30)
 #filterPicker = OptionMenu(f2, 'naam', 'waardering', 'prijs', 'minimumleeftijd', 'appID', 'uitkomstdatum')
 #filterPicker.pack(padx = 20, pady = 30)
 
-def refreshGames():
+def refreshGames(refreshList = listOfGames):
     tree.delete(*tree.get_children()) #leeg de tree
-    for i in listOfGames: #plaats de list opnieuw
+    for i in refreshList: #plaats de list opnieuw
         tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, round(i.rating, 2), i.price, i.required_age, i.release_date, i.appid))
 
 refreshGames()
@@ -312,6 +312,9 @@ if gpioMode:
     Refresh_status()
 else:
     pass
+
+for i in filterByPrice(12, 10):
+    print(f'{i.name}, {i.price}\n')
 
 # run window
 raise_frame(f1)
