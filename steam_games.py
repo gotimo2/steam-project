@@ -237,39 +237,44 @@ def modes(lst):
 #filterfuncties
 
 def filterByName(que):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if que not in i.name:
-            del i
+        if que in i.name:
+            returnlist.append(i)
+    return returnlist
 
 def filterByAppID(que):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if i.appid != que:
-            del i
+        if que == i.appid:
+            returnlist.append(i)
+    return returnlist
 
 def filterByPrice(que_high, que_low = 0):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if que_high < i.price or que_low > i.price:
-            del i
+        if que_high > i.price and que_low < i.price:
+            returnlist.append(i)
+    return returnlist
 
 def filterByRating(que_high, que_low, que_number = 100):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if que_high < i.rating or que_low > i.rating or (i.positive_ratings + i.negative_ratings) < que_number:
-            del i
+        if que_high > i.rating and que_low < i.rating and (i.positive_ratings + i.negative_ratings) >= que_number:
+            returnlist.append(i)
+    return returnlist
 
 def filterByAge(que_high, que_low = 0):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if que_high < i.required_age or que_low > i.required_age:
-            del i
+        if que_high > i.required_age and que_low < i.required_age:
+            returnlist.append(i)
+    return returnlist
 
 def filterByRelease(que_low, que_high = currentDate):
-    regenGameList()
+    returnlist = []
     for i in listOfGames:
-        if que_high < i.release_date or que_low > i.release_date:
-            del i
-    pass
+        if que_high > i.release_date and que_low < i.release_date:
+            returnlist.append(i)
+    return returnlist
     

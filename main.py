@@ -4,8 +4,16 @@ from tkinter import ttk
 import steam_games
 from steam_games import *  # pylint:disable=unused-wildcard-import
 import time
-#import RPI.GPIO as GPIO
-#GPIO.setmode(GPIO.BCM)
+
+#import gpio, als het beschikbaar is.
+gpioMode = True
+try:
+    import RPi.GPIO as GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(0)
+except:
+    gpioMode = False
+
 # maak window en maak een lokale """kopie""" van listofgames voor makkelijk gebruik en manipulatie
 root = Tk()
 root.title("Steam Tool") #zet titel van window naar "Steam Tool"
@@ -54,18 +62,19 @@ for i in [overzichtgames, statistieken, vriendenlijst]:
     i.pack(pady=10)
 
 # status weergave
-def status_circle(x, y, r, icon_status):
+def status_circle(x, y, r, icon_status, status):
     x0 = x - r
     y0 = y - r
     x1 = x + r
     y1 = y + r
-    # if status == 'online': #Checkt wat de status is en past kleur hierop aan (status zelf moet nog geimplenteerd worden)
-    #     kleur = 'green'
-    # elif status == 'away':
-    #     kleur = 'yellow'
-    # elif status == 'offline':
-    #     kleur = 'white'
-    return icon_status.create_oval(x0, y0, x1, y1, fill='green')
+    kleur = str
+    if status == 'online':  # Checkt wat de status is en past kleur hierop aan (status zelf moet nog geimplenteerd worden)
+        kleur = 'green'
+    elif status == 'away':
+        kleur = 'orange'
+    elif status == 'offline':
+        kleur = 'white'
+    return icon_status.create_oval(x0, y0, x1, y1, fill=kleur)
 
 #gebruiker status canvas
 CanvasStatus = Canvas(f1)
@@ -77,15 +86,21 @@ CanvasStatus3.pack(side=BOTTOM, anchor=SE)
 CanvasStatus4 = Canvas(f4)
 CanvasStatus4.pack(side=BOTTOM, anchor=SE)
 
-#roept status_circle() aan
-icon1 = (CanvasStatus)
-icoon1 = status_circle(70, 20, 7, icon1)
-icon2 = (CanvasStatus2)
-icoon2 = status_circle(70, 20, 7, icon2)
-icon3 = (CanvasStatus3)
-icoon3 = status_circle(70, 20, 7, icon3)
-icon4 = (CanvasStatus4)
-icoon4 = status_circle(70, 20, 7, icon4)
+# roept status_circle() aan
+def icon(x):
+    status = str
+    if x == 0:
+        status = 'online'
+    elif x == 1:
+        status = 'away'
+    icon1 = (CanvasStatus)
+    status_circle(80, 20, 7, icon1, status)
+    icon2 = (CanvasStatus2)
+    status_circle(80, 20, 7, icon2, status)
+    icon3 = (CanvasStatus3)
+    status_circle(80, 20, 7, icon3, status)
+    icon4 = (CanvasStatus4)
+    status_circle(80, 20, 7, icon4, status)
 
 #gebruiker status labels
 StatusGebruiker = Label(CanvasStatus, text= 'Status:')
@@ -243,9 +258,9 @@ filterEntry.pack(padx = 20, pady = 30)
 #filterPicker = OptionMenu(f2, 'naam', 'waardering', 'prijs', 'minimumleeftijd', 'appID', 'uitkomstdatum')
 #filterPicker.pack(padx = 20, pady = 30)
 
-def refreshGames():
+def refreshGames(refreshList = listOfGames):
     tree.delete(*tree.get_children()) #leeg de tree
-    for i in listOfGames: #plaats de list opnieuw
+    for i in refreshList: #plaats de list opnieuw
         tree.insert(parent='', index='end', iid=i.appid, text="game", values=(i.name, round(i.rating, 2), i.price, i.required_age, i.release_date, i.appid))
 
 refreshGames()
@@ -262,8 +277,44 @@ sortByAppid()
 -----------------------------------------------------------
 """""
 
-#def AfstandSensor(): #Checkt of gebruiker achter pc zit en past de status aan.
+if gpioMode:
+    # Pins voor de sensor
+    sr04_trig = 20
+    sr04_echo = 21
 
+    GPIO.setup(sr04_trig, GPIO.OUT)
+    GPIO.setup(sr04_echo, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+
+    def AfstandSensor(trig_pin, echo_pin):  # Checkt of gebruiker achter pc zit en past de status aan.
+        GPIO.output(trig_pin, GPIO.HIGH)
+        time.sleep(2)
+        GPIO.output(trig_pin, GPIO.LOW)
+
+        while GPIO.input(echo_pin) == False:
+            begin = time.time()
+
+        while GPIO.input(echo_pin) == True:
+            eind = time.time()
+            tijd = eind - begin
+            afstand_cm = tijd * 17165
+        return afstand_cm
+
+
+    def Refresh_status():
+        if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
+            icon(1)
+        else:
+            icon(0)
+        root.after(10000, Refresh_status)
+
+
+    Refresh_status()
+else:
+    pass
+
+for i in filterByPrice(12, 10):
+    print(f'{i.name}, {i.price}\n')
 
 # run window
 raise_frame(f1)
