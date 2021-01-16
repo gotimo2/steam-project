@@ -76,6 +76,9 @@ def status_circle(x, y, r, icon_status, status):
         kleur = 'white'
     return icon_status.create_oval(x0, y0, x1, y1, fill=kleur)
 
+
+
+
 #gebruiker status canvas
 CanvasStatus = Canvas(f1)
 CanvasStatus.pack(side=BOTTOM,  anchor=SE)
@@ -111,6 +114,33 @@ StatusGebruiker3 = Label(CanvasStatus3, text= 'Status:')
 StatusGebruiker3.pack(side=BOTTOM, anchor=SE,pady=10,padx=20)
 StatusGebruiker4 = Label(CanvasStatus4, text= 'Status:')
 StatusGebruiker4.pack(side=BOTTOM, anchor=SE,pady=10,padx=20)
+
+
+#dropdown menu status
+
+#functie wanneer je optie kiest in menu
+def function(x):
+    if x == "Online":
+        print("Online")
+    elif x == "Away":
+        print("Away")
+    elif x == "Offline":
+        print("Offline")
+    elif x == "Real-time":
+        print("Real-time")
+
+#optie menu variabel
+optionVar = StringVar()
+#standaard status
+optionVar.set("Online")
+
+#de optie menu
+option = OptionMenu(CanvasStatus, optionVar, "Online","Away","Offline","Real-time", command=function)
+option.pack(side=BOTTOM,  anchor=SE)
+
+
+
+
 
 #headingfuncties -Tedieus, uitgebreid, alleen nodig want tkinter commands.
 #doen wat ze moeten doen tho ¯\_(ツ)_/¯
