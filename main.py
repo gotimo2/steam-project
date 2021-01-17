@@ -343,8 +343,8 @@ if gpioMode:
 else:
     pass
 
-for i in filterByPrice(12, 10):
-    print(f'{i.name}, {i.price}\n')
+#for i in filterByPrice(12, 10):
+#    print(f'{i.name}, {i.price}\n')
 
 # run window
 raise_frame(f1)
