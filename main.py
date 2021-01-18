@@ -4,6 +4,12 @@ from tkinter import ttk
 import steam_games
 from steam_games import *  # pylint:disable=unused-wildcard-import
 import time
+import random
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from matplotlib import style
+import numpy as np
+from matplotlib import rcParams
 
 # import gpio, als het beschikbaar is.
 gpioMode = True
