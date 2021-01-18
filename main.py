@@ -183,6 +183,12 @@ def launchGame():
     # print(valueList[2][5]) #print de steamid
     os.system(f"start \"\" steam://run/{currentid}")  # open de steam://run voor de gekozen game
 
+def addFriend():
+    treeSelected = tree2.focus()  # pak gefocuste item van de treeview
+    valueList2 = list(tree2.item(treeSelected).values())  # maak een list van de values ervan
+    print(valueList2[2][0])
+    print(valueList2[2][9])
+
 
 def reverseList():
     listOfGames.reverse()
@@ -444,6 +450,9 @@ Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
+
+Button(f4, text='Voeg toe aan beste vrienden', command=addFriend).pack(pady=10, side=BOTTOM)
+
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 filterEntry = Entry(f2)
