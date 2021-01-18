@@ -264,9 +264,23 @@ def filterByRating(que_high, que_low, que_number = 100):
             returnlist.append(i)
     return returnlist
 
+def filterByRating2(gegevenlijst,que_high, que_low, que_number = 100):
+    returnlist = []
+    for i in gegevenlijst:
+        if que_high > i.rating and que_low < i.rating and (i.positive_ratings + i.negative_ratings) >= que_number:
+            returnlist.append(i)
+    return returnlist
+
 def filterByAge(que_high, que_low = 0):
     returnlist = []
     for i in listOfGames:
+        if que_high > i.required_age and que_low < i.required_age:
+            returnlist.append(i)
+    return returnlist
+
+def filterByAge2(gegevenlijst,que_high, que_low = 0):
+    returnlist = []
+    for i in gegevenlijst:
         if que_high > i.required_age and que_low < i.required_age:
             returnlist.append(i)
     return returnlist
