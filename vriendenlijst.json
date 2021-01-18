@@ -1,0 +1,122 @@
+[
+    {
+        "naam": "Pascal",
+        "name": "pascal134",
+        "vriendcode": 174595,
+        "game1": "Cities:Skylines",
+        "game1st": 1.5,
+        "game2": "F1 2018",
+        "game2st": 2.5,
+        "game3": "We Were Here Together",
+        "game3st": 5,
+        "status": "online"
+    },
+    {
+        "naam": "Sven",
+        "name": "svenno02",
+        "vriendcode": 184596,
+        "game1": "The Forest",
+        "game1st": 3,
+        "game2": "Hollow Knight",
+        "game2st": 0.5,
+        "game3": "F1 2018",
+        "game3st": 30,
+        "status": "offline"
+    },
+    {
+        "naam": "Kyrill",
+        "name": "Koraal",
+        "vriendcode": 937592,
+        "game1": "Portal2",
+        "game1st": 21,
+        "game2": "Tomb Raider",
+        "game2st": 12.5,
+        "game3": "F1 2018",
+        "game3st": 25,
+        "status": "offline"
+    },
+    {
+        "naam": "David",
+        "name": "Davito",
+        "vriendcode": 248392,
+        "game1": "Stardew Valley",
+        "game1st": 105,
+        "game2": "Rust",
+        "game2st": 32.5,
+        "game3": "F1 2018",
+        "game3st": 104,
+        "status": "online"
+    },
+    {
+        "naam": "Timo",
+        "name": "Timonator",
+        "vriendcode": 1571857,
+        "game1": "FreezeME",
+        "game1st": 97,
+        "game2": "Taimumari",
+        "game2st": 20,
+        "game3": "The Depths of Tolagal",
+        "game3st": 90,
+        "status": "offline"
+    },
+    {
+        "naam": "Kim",
+        "name": "boobserman",
+        "vriendcode": 2372082,
+        "game1": "Boobserman",
+        "game1st": 81,
+        "game2": "Frost",
+        "game2st": 53,
+        "game3": "Ruckus Ridge VR Party",
+        "game3st": 23,
+        "status": "offline"
+    },
+    {
+        "naam": "Hugo",
+        "name": "Hugo",
+        "vriendcode": 6692156,
+        "game1": "DeathMetal",
+        "game1st": 75,
+        "game2": "Nighttime Terror VR: Dessert Defender",
+        "game2st": 62,
+        "game3": "Total War: NAPOLEON - Definitive Edition",
+        "game3st": 95,
+        "status": "offline"
+    },
+    {
+        "naam": "Erik",
+        "name": "Erik",
+        "vriendcode": 3657795,
+        "game1": "Pike and Shot : Campaigns",
+        "game1st": 87,
+        "game2": "ISLAND",
+        "game2st": 39,
+        "game3": "Highland Warriors",
+        "game3st": 79,
+        "status": "offline"
+    },
+    {
+        "naam": "Karel",
+        "name": "Karel",
+        "vriendcode": 5988363,
+        "game1": "Art of War: Red Tides",
+        "game1st": 86,
+        "game2": "Paintball Chibis",
+        "game2st": 57,
+        "game3": "Drizzlepath: Genie",
+        "game3st": 45,
+        "status": "online"
+    },
+    {
+        "naam": "Stan",
+        "name": "Stan",
+        "vriendcode": 1804449,
+        "game1": "Wondee",
+        "game1st": 14,
+        "game2": "Girlfriend Cards",
+        "game2st": 22,
+        "game3": "Call to Power II",
+        "game3st": 83,
+        "status": "online"
+    }
+]
