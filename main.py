@@ -215,58 +215,200 @@ tree_scroll = Scrollbar(f4)
 tree_scroll.pack(side=RIGHT, fill=Y)
 
 tree2 = ttk.Treeview(f4, yscrollcommand=tree_scroll.set, height=25, column=(
-"column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9",), show='headings')
+"column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9","column10"), show='headings')
 tree_scroll.configure(command=tree.yview)
 # configureer tree
 tree2.heading("#1", text="gebruiker")
 tree2.column("#1", minwidth=0, width=75, stretch=NO)
-
-tree2.heading("#2", text="vriendcode")
+tree2.heading("#2", text="bijnaam")
 tree2.column("#2", minwidth=0, width=75, stretch=NO)
-tree2.heading("#3", text="game")
+tree2.heading("#3", text="vriendcode")
 tree2.column("#3", minwidth=0, width=100, stretch=NO)
-tree2.heading("#4", text="speeltijd")
+tree2.heading("#4", text="game")
 tree2.column("#4", minwidth=0, width=75, stretch=NO)
-tree2.heading("#5", text="game")
+tree2.heading("#5", text="speeltijd")
 tree2.column("#5", minwidth=0, width=100, stretch=NO)
-tree2.heading("#6", text="speeltijd ")
+tree2.heading("#6", text="game ")
 tree2.column("#6", minwidth=0, width=75, stretch=NO)
-tree2.heading("#7", text="game")
+tree2.heading("#7", text="speeltijd")
 tree2.column("#7", minwidth=0, width=100, stretch=NO)
-tree2.heading("#8", text="speeltijd")
+tree2.heading("#8", text="game")
 tree2.column("#8", minwidth=0, width=75, stretch=NO)
-tree2.heading("#9", text="status")
+tree2.heading("#9", text="speeltijd")
 tree2.column("#9", minwidth=0, width=75, stretch=NO)
+tree2.heading("#10", text="status")
+tree2.column("#10", minwidth=0, width=75, stretch=NO)
+
 
 tree2
-vriendenlijst = {'Pascal': {'name': 'pascal134', 'vriendcode': 174595, 'game1': 'Cities:Skylines', 'game1st': 1.5,
-                            'game2': 'F1 2018', 'game2st': 2.5, 'game3': 'We Were Here Together', 'game3st': 5,
-                            'status': 'online'}}
-vriendenlijst['Sven'] = {'name': 'svenno02', 'vriendcode': 184596, 'game1': 'The Forest', 'game1st': 3,
-                         'game2': 'Hollow Knight', 'game2st': 0.5, 'game3': 'F1 2018', 'game3st': 30,
-                         'status': 'offline'}
-vriendenlijst['Kyrill'] = {'name': 'Koraal', 'vriendcode': 937592, 'game1': 'Portal2', 'game1st': 21,
-                           'game2': 'Tomb Raider', 'game2st': 12.5, 'game3': 'F1 2018', 'game3st': 25,
-                           'status': 'offline'}
-vriendenlijst['David'] = {'name': 'Davito', 'vriendcode': 248392, 'game1': 'Stardew Valley', 'game1st': 105,
-                          'game2': 'Rust', 'game2st': 32.5, 'game3': 'F1 2018', 'game3st': 104, 'status': 'online'}
-
-dictonarylijst = ['name', 'vriendcode', 'game1', 'game1st', 'game2', 'game2st', 'game3', 'game3st', 'status']
 
 
-def insertment(target):
-    benodigdelijst = []
-    for i in dictonarylijst:
-        benodigdelijst.append(vriendenlijst[target][i])
-    return benodigdelijst
 
 
-def betereinsertment(target):
-    values = insertment(target)[0], insertment(target)[1], insertment(target)[2], insertment(target)[3], \
-             insertment(target)[4], insertment(target)[5], insertment(target)[6], insertment(target)[7], \
-             insertment(target)[8]
-    return values
+Label(f3, text='geef maximum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=63)
+entry1 = Entry(master=f3)
+entry1.place(x=180,y=90)
+Label(f3, text='geef minimum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=63)
+entry2 = Entry(master=f3)
+entry2.place(x=380,y=90)
+Label(f3, text='geef maximum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560,y=63)
+entry3 = Entry(master=f3)
+entry3.place(x=560,y=90)
+Label(f3, text='geef minimum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740,y=63)
+entry4 = Entry(master=f3)
+entry4.place(x=740,y=90)
+Label(f3, text='geef maximum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=160)
+entry5 = Entry(master=f3)
+entry5.place(x=180,y=180)
+Label(f3, text='geef minimum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=400,y=160)
+entry6 = Entry(master=f3)
+entry6.place(x=400,y=180)
+entry7=Entry(master=f4)
+entry7.place(x=400,y=180)
 
+def vriendtoevoegen():
+    x=random.randrange(0,2)
+    if x ==0:
+        y='offline'
+    if x==1:
+        y='online'
+    bestand = 'vriendenlijst.json'
+    with open(bestand, 'r+') as lezen:
+        data = json.load(lezen)
+    naam = entry7.get()
+    name=entry7.get()
+    data.append({
+        'naam': naam,
+        'name': name,
+        'vriendcode': random.randrange(1000000, 10000000),
+        'game1': getattr(random.choice(listOfGames), 'name'),
+        'game1st': random.randrange(0, 100),
+        'game2': getattr(random.choice(listOfGames), 'name'),
+        'game2st': random.randrange(0, 100),
+        'game3': getattr(random.choice(listOfGames), 'name'),
+        'game3st': random.randrange(0, 100),
+        'status': y})
+    with open(bestand, 'w') as outfile:
+        json.dump(data,outfile,indent=4)
+button=Button(master=f4,text='geef naam vriend',command=lambda: vriendtoevoegen())
+button.place(x=180,y=180)
+
+def makenleeftijdlijsten():
+    y = filterByAge(int(entry5.get()),int(entry6.get()))
+    x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
+    z = quicksort(x, "rating")
+    z.reverse()
+    namen = []
+    rating = []
+    for i in z:
+        namen.append(i.name)
+        rating.append(i.rating)
+    plt.figure(figsize=[7, 3])
+    namen2 = namen[:20]
+    rating2 = rating[:20]
+    positie = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, ]
+    plt.barh(namen2, rating2)
+    plt.gcf().subplots_adjust(bottom=0.15)
+    plt.tight_layout()
+    plt.show()
+
+
+
+
+
+def makenprijslijsten():
+    y = filterByPrice(float(entry3.get()),float(entry4.get()))
+    x = filterByRating2(y, float(entry1.get()), float(entry2.get()))
+    z = quicksort(x, "rating")
+    z.reverse()
+    namen = []
+    rating = []
+    for i in z:
+        namen.append(i.name)
+        rating.append(i.rating)
+    plt.figure(figsize=[7, 3])
+    namen2 = namen[:10]
+    prijzen2 = rating[:10]
+    positie = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ]
+    plt.barh(namen2, prijzen2)
+    plt.gcf().subplots_adjust(bottom=0.15)
+    plt.tight_layout()
+    plt.show()
+
+def makenprijslijstenmetprijs():
+    y = filterByPrice(int(entry3.get()),int(entry4.get()))
+    x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
+    r=filterByAge(x,int(entry5.get()),int(entry6.get()))
+    z = quicksort(r, "price")
+    z.reverse()
+    namen = []
+    prijzen = []
+    for i in z:
+        namen.append(i.name)
+        prijzen.append(i.price)
+    plt.figure(figsize=[7, 3])
+    namen2=namen[:10]
+    prijzen2=prijzen[:10]
+    plt.barh(namen2, prijzen2)
+    plt.gcf().subplots_adjust(bottom=0.15)
+    plt.tight_layout()
+    plt.show()
+
+
+
+
+
+button1=Button(master=f3,command=lambda: makenprijslijsten(),text="makenprijslijsten")
+button1.pack()
+button2=Button(master=f3,command=lambda: makenleeftijdlijsten(),text="makenleeftijdlijsten")
+button2.pack()
+button3=Button(master=f3,command=lambda: makenprijslijstenmetprijs(),text="makenprijslijstenmetprijs")
+button3.pack()
+
+def animate():
+
+    games = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+    prijzen = [9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00,
+               9.99, 42.00, 25.00, 9.99, 42.00, 8]
+    positie=[1,2,3,4,5,6,7,8,9,10]
+    plt.bar(positie,prijzen,width=0.5)
+    plt.xticks(positie, games)
+
+    plt.show()
+
+
+
+
+def insertment():
+    def tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status):
+        tree2.pack(pady=10, padx=10)
+        tree2.insert(parent='', index='end', text="game",
+                     values=(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status))
+    bestand = 'vriendenlijst.json'
+    with open(bestand, 'r+') as lezen:
+        vriendendata = json.load(lezen)
+    i = vriendendata
+    for x in range(len(i)):
+        naam = i[x]['naam']
+        name=i[x]['name']
+        vriendcode = i[x]['vriendcode']
+        game1 = i[x]['game1']
+        game1st = i[x]['game1st']
+        game2 = i[x]['game2']
+        game2st = i[x]['game2st']
+        game3 = i[x]['game3']
+        game3st = i[x]['game3st']
+        status = i[x]['status']
+        tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status)
+
+
+insertment()
+
+def refreshvrienden():
+    tree2.delete(*tree2.get_children())
+    insertment()# leeg de tree
+button=Button(master=f4,text='refresh',command=lambda: refreshvrienden())
+button.place(y=500,x=500)
 
 lijstmetgamesvriend1 = ['Cities:Skylines', 'F1 2018', 'We Were Here Together']
 lijstmetgamesvriend2 = ['The Forest', 'Hollow Knight', 'F1 2018']
@@ -275,16 +417,13 @@ lijstmetgamesvriend4 = ['Stardew Valley', 'Rust', 'F1 2018']
 
 
 # plaats tree
-def tree2insert(target):
-    tree2.pack(pady=10, padx=10)
-    tree2.insert(parent='', index='end', text="game",
-                 values=(betereinsertment(target)))
 
 
-tree2insert('Pascal')
-tree2insert('Sven')
-tree2insert('Kyrill')
-tree2insert('David')
+#
+# tree2insert('Pascal')
+# tree2insert('Sven')
+# tree2insert('Kyrill')
+# tree2insert('David')
 
 ##knoppen om te sorteren, --moeten naar heading veranderd worden-- zijn nu naar heading veranderd, dus onnodig. ik hou ze hier gewoon voor het geval dat.
 # Button(f2, text='Sorteer op naam', command=sortByName).pack(pady=10)
@@ -293,6 +432,7 @@ tree2insert('David')
 # Button(f2, text='Sorteer games op prijs', command=sortByPrice).pack(pady=10)
 # Button(f2, text='Sorteer games op Waardering', command=sortByRating).pack(pady=10)
 # Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
+
 
 
 # knop voor steam launch en lijst omdraaien
