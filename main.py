@@ -1,3 +1,4 @@
+import json
 import os
 from tkinter import *  # pylint:disable=unused-wildcard-import
 from tkinter import ttk
@@ -189,12 +190,6 @@ def launchGame():
     # print(valueList[2][5]) #print de steamid
     os.system(f"start \"\" steam://run/{currentid}")  # open de steam://run voor de gekozen game
 
-def addFriend():
-    treeSelected = tree2.focus()  # pak gefocuste item van de treeview
-    valueList2 = list(tree2.item(treeSelected).values())  # maak een list van de values ervan
-    print(valueList2[2][0])
-    print(valueList2[2][9])
-
 
 def reverseList():
     listOfGames.reverse()
@@ -305,6 +300,50 @@ def vriendtoevoegen():
 button=Button(master=f4,text='geef naam vriend',command=lambda: vriendtoevoegen())
 button.place(x=180,y=180)
 
+
+def addBestFriend():
+    treeSelected = tree2.focus()  # pak gefocuste item van de treeview
+    valueList2 = list(tree2.item(treeSelected).values())  # maak een list van de values ervan
+    bestand = 'bestevrienden.json'
+    vriendcodes = []
+    with open(bestand, 'r+') as lezen:
+        besteVrienden = json.load(lezen)
+    for x in range(len(besteVrienden)):
+        vriendcodes.append(besteVrienden[x]['vriendcode'])
+    if len(besteVrienden) < 4:
+        if valueList2[2][2] not in vriendcodes:
+            besteVrienden.append({
+                'naam': valueList2[2][0],
+                'name': valueList2[2][1],
+                'vriendcode': valueList2[2][2],
+                'game1': valueList2[2][3],
+                'game1st': valueList2[2][4],
+                'game2': valueList2[2][5],
+                'game2st': valueList2[2][6],
+                'game3': valueList2[2][7],
+                'game3st': valueList2[2][8],
+                'status': valueList2[2][9]})
+            with open(bestand, 'w') as outfile:
+                json.dump(besteVrienden, outfile, indent=4)
+        else:
+            print('Deze vriend staat al in je beste vriendenlijst.')
+    else:
+        print('Je hebt al het maximumaantal (4) beste vrienden in je lijst staan.')
+
+
+def removeBestFriend():
+    bestand = 'bestevrienden.json'
+    verwijder = 'Sven' #get uit gui toevoegen
+    with open(bestand, 'r+') as lezen:
+        besteVrienden = json.load(lezen)
+    for i in range(len(besteVrienden)):
+        if verwijder == besteVrienden[i]['naam']:
+            del besteVrienden[i]
+            break
+    with open(bestand, 'w') as outfile:
+        json.dump(besteVrienden, outfile, indent=4)
+
+
 def makenleeftijdlijsten():
     y = filterByAge(int(entry5.get()),int(entry6.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
@@ -323,9 +362,6 @@ def makenleeftijdlijsten():
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
-
-
-
 
 
 def makenprijslijsten():
@@ -582,6 +618,59 @@ if gpioMode:
 else:
     pass
 
+if gpioMode:
+    shift_clock_pin = 5
+    latch_clock_pin = 6
+    data_pin = 13
+
+    GPIO.setup(shift_clock_pin, GPIO.OUT)
+    GPIO.setup(latch_clock_pin, GPIO.OUT)
+    GPIO.setup(data_pin, GPIO.OUT)
+
+
+    def checkOnline():
+        bestand = 'bestevrienden.json'
+        aantal = 0
+        with open(bestand, 'r+') as lezen:
+            besteVrienden = json.load(lezen)
+        for i in range(len(besteVrienden)):
+            if besteVrienden[i]['status'] == 'online':
+                aantal = aantal + 1
+        return aantal
+
+
+    def hc595(shift_clock_pin, latch_clock_pin, data_pin, value, delay):
+        for i in range(4):
+            if value % 2 == 1:
+                GPIO.output(data_pin, GPIO.HIGH)
+                GPIO.output(shift_clock_pin, GPIO.HIGH)
+                GPIO.output(shift_clock_pin, GPIO.LOW)
+            else:
+                GPIO.output(data_pin, GPIO.LOW)
+                GPIO.output(shift_clock_pin, GPIO.HIGH)
+                GPIO.output(shift_clock_pin, GPIO.LOW)
+            value = value // 2
+
+        GPIO.output(latch_clock_pin, GPIO.HIGH)
+        GPIO.output(latch_clock_pin, GPIO.LOW)
+        time.sleep(delay)
+
+
+    def aantalOnline(aantal):
+        delay = 0.1
+        if aantal == 0:
+            hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, delay)
+        elif aantal == 1:
+            hc595(shift_clock_pin, latch_clock_pin, data_pin, 8, delay)
+        elif aantal == 2:
+            hc595(shift_clock_pin, latch_clock_pin, data_pin, 12, delay)
+        elif aantal == 3:
+            hc595(shift_clock_pin, latch_clock_pin, data_pin, 14, delay)
+        elif aantal == 4:
+            hc595(shift_clock_pin, latch_clock_pin, data_pin, 15, delay)
+
+else:
+    pass
 # for i in filterByPrice(12, 10):
 #    print(f'{i.name}, {i.price}\n')
 

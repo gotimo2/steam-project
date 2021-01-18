@@ -1,4 +1,3 @@
-
 import json
 import datetime
 #steam.json importen als dictionary
