@@ -425,7 +425,7 @@ def removeBestFriend():
 
 def makenleeftijdlijsten():
     y = filterByAge(int(entry5.get()),int(entry6.get()))
-    x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
+    x = filterByRating2(y, int(entry2.get()), int(entry1.get()))
     z = quicksort(x, "rating")
     z.reverse()
     namen = []
@@ -447,8 +447,8 @@ def makenleeftijdlijsten():
 
 
 def makenprijslijsten():
-    y = filterByPrice(float(entry3.get()),float(entry4.get()))
-    x = filterByRating2(y, float(entry1.get()), float(entry2.get()))
+    y = filterByPrice(float(entry4.get()),float(entry3.get()))
+    x = filterByRating2(y, float(entry2.get()), float(entry1.get()))
     z = quicksort(x, "rating")
     z.reverse()
     namen = []
@@ -470,9 +470,9 @@ def makenprijslijsten():
 
 
 def makenprijslijstenmetleeftijd():
-    y = filterByPrice(int(entry3.get()),int(entry4.get()))
-    x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
-    r=filterByAge2(x,int(entry5.get()),int(entry6.get()))
+    y = filterByPrice(int(entry4.get()),int(entry3.get()))
+    x = filterByRating2(y, int(entry2.get()), int(entry1.get()))
+    r=filterByAge2(x,int(entry6.get()),int(entry5.get()))
     z = quicksort(r, "price")
     z.reverse()
     namen = []
@@ -487,7 +487,7 @@ def makenprijslijstenmetleeftijd():
     plt.xlabel('Rating')
     plt.ylabel('Games')
     plt.title(
-        'Top 20 games for people between the age of' + ' ' + str(entry5.get()) + ' ' + 'and' + ' ' + str(entry6.get()))
+        'Top 20 games for people between the age of' + ' ' + str(entry6.get()) + ' ' + 'and' + ' ' + str(entry5.get()))
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
