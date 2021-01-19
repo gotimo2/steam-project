@@ -250,79 +250,79 @@ tree2.column("#11", minwidth=0, width=75, stretch=NO)
 tree2
 
 Label(f3, text='Top games bepaalde leeftijd:', foreground='#ffffff', background='#a52019',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180, y=0)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180, y=0)
 Label(f3, text='Voer minimale en maximale rating in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180, y=25)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180, y=25)
 Label(f3, text='Voer minimale en maximale leeftijd in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180, y=50)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180, y=50)
 Label(f3, text='Wat is het begingetal  en wat is het eindgetal', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180, y=75)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=40).place(x=180, y=75)
 Label(f3, text='Vbld: top 100 begin bij nr 10 en eindig bij nr 30', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180, y=100)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=40).place(x=180, y=100)
 Label(f3, text='Klik voor grafiek', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=35).place(x=180, y=125)
+      height=1, width=40).place(x=180, y=125)
 Label(f3, text='Top games bepaalde prijs:', foreground='#ffffff', background='#a52019',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560, y=0)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560, y=0)
 Label(f3, text='Voer minimale en maximale prijs in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560, y=25)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560, y=25)
 Label(f3, text='Voer minimale en maximale rating in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560, y=50)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560, y=50)
 Label(f3, text='Wat is het begingetal  en wat is het eindgetal', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560, y=75)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=40).place(x=560, y=75)
 Label(f3, text='Klik voor grafiek', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=35).place(x=560, y=100)
+      height=1, width=40).place(x=560, y=100)
 
 Label(f3, text='Top games bepaalde prijs met leeftijdsgrens:', foreground='#ffffff', background='#a52019',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940, y=0)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=40).place(x=940, y=0)
 Label(f3, text='Voer minimale en maximale prijs in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940, y=25)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940, y=25)
 Label(f3, text='Voer minimale en maximale leeftijd in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940, y=50)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940, y=50)
 Label(f3, text='Voer minimale en maximale rating in', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940, y=75)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940, y=75)
 Label(f3, text='Wat is het begingetal  en wat is het eindgetal', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940, y=100)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=40).place(x=940, y=100)
 Label(f3, text='Klik voor grafiek', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=35).place(x=940, y=125)
+      height=1, width=40).place(x=940, y=125)
 
 Label(f3, text='Geef minimum rating', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=175, y=153)
-entry2 = Entry(master=f3)
-entry2.place(x=180, y=180)
-Label(f3, text='Geef maximum rating', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=375, y=153)
+      height=1, width=25).place(x=175, y=153)
 entry1 = Entry(master=f3)
-entry1.place(x=380, y=180)
+entry1.place(x=180, y=180)
+Label(f3, text='Geef maximum rating', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
+      height=1, width=25).place(x=375, y=153)
+entry2 = Entry(master=f3)
+entry2.place(x=380, y=180)
 Label(f3, text='Geef minimum price', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=560, y=153)
-entry4 = Entry(master=f3)
-entry4.place(x=560, y=180)
-Label(f3, text='Geef maximum price', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=740, y=153)
+      height=1, width=25).place(x=560, y=153)
 entry3 = Entry(master=f3)
-entry3.place(x=740, y=180)
+entry3.place(x=560, y=180)
+Label(f3, text='Geef maximum price', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
+      height=1, width=25).place(x=740, y=153)
+entry4 = Entry(master=f3)
+entry4.place(x=740, y=180)
 Label(f3, text='Geef minimum leeftiijd', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180, y=240)
-entry6 = Entry(master=f3)
-entry6.place(x=180, y=280)
-Label(f3, text='Geef maximum leeftiijd', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380, y=240)
+      font=('Helvetica', 12, 'bold italic'), height=1, width=25).place(x=180, y=240)
 entry5 = Entry(master=f3)
-entry5.place(x=400, y=280)
+entry5.place(x=180, y=280)
+Label(f3, text='Geef maximum leeftiijd', foreground='#ffffff', background='#008080',
+      font=('Helvetica', 12, 'bold italic'), height=1, width=25).place(x=380, y=240)
+entry6 = Entry(master=f3)
+entry6.place(x=400, y=280)
 Label(f3, text='Geef het begingetal', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=590, y=240)
+      height=1, width=25).place(x=590, y=240)
 entry8 = Entry(master=f3)
 entry8.place(x=560, y=280)
 Label(f3, text='Geef het eindgetal', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=20).place(x=770, y=240)
+      height=1, width=25).place(x=770, y=240)
 entry9 = Entry(master=f3)
 entry9.place(x=740, y=280)
 Label(f3, text='Klik hier voor de topgames\n voor een bepaalde leeftijd.', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=2, width=21).place(x=180, y=360)
+      font=('Helvetica', 12, 'bold italic'), height=2, width=25).place(x=180, y=360)
 Label(f3, text='Klik hier voor de topgames\n voor een bepaalde prijs.', foreground='#ffffff', background='#008080',
-      font=('Helvetica', 12, 'bold italic'), height=2, width=20).place(x=420, y=360)
+      font=('Helvetica', 12, 'bold italic'), height=2, width=25).place(x=420, y=360)
 Label(f3, text='Klik hier voor de topgames\n voor een bepaalde prijs\n met een leeftijdsgrens.', foreground='#ffffff',
-      background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=180, y=480)
+      background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=25).place(x=180, y=480)
 
 # statistiek labels
 Label(f3, text='Gemiddelde rating:\n' + str(mean(makeList('rating'))) + '\n Meest voorkomende rating:\n' + str(
@@ -454,7 +454,7 @@ def removeBestFriend():
 
 
 def makenleeftijdlijsten():
-    y = filterByAge(int(entry5.get()), int(entry6.get()))
+    y = filterByAge(int(entry6.get()), int(entry5.get()))
     x = filterByRating2(y, int(entry2.get()), int(entry1.get()))
     z = quicksort(x, "rating")
     z.reverse()
@@ -470,7 +470,7 @@ def makenleeftijdlijsten():
     plt.barh(namen2, rating2)
     plt.xlabel('Rating')
     plt.ylabel('Games')
-    plt.title('Top 20 games')
+    plt.title('Top'+' '+str(entry9.get()+' games'))
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
@@ -493,7 +493,7 @@ def makenprijslijsten():
     plt.barh(namen2, prijzen2)
     plt.xlabel('Rating')
     plt.ylabel('Games')
-    plt.title('Top 20 games')
+    plt.title('Top'+' '+str(entry9.get()+' games'))
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
@@ -516,8 +516,7 @@ def makenprijslijstenmetleeftijd():
     plt.barh(namen2, prijzen2)
     plt.xlabel('Rating')
     plt.ylabel('Games')
-    plt.title(
-        'Top 20 games for people between the age of' + ' ' + str(entry6.get()) + ' ' + 'and' + ' ' + str(entry5.get()))
+    plt.title('Top'+' '+str(entry9.get()+' games for people between the age of' + ' ' + str(entry6.get()) + ' ' + 'and' + ' ' + str(entry5.get())))
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
