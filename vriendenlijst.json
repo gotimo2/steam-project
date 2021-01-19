@@ -118,5 +118,17 @@
         "game3": "Call to Power II",
         "game3st": 83,
         "status": "online"
+    },
+    {
+        "naam": "",
+        "name": "",
+        "vriendcode": 8978950,
+        "game1": "The Ballad Singer",
+        "game1st": 91,
+        "game2": "Uncharted Waters II / ????? II",
+        "game2st": 58,
+        "game3": "Chime",
+        "game3st": 43,
+        "status": "offline"
     }
 ]

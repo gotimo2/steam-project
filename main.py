@@ -37,7 +37,6 @@ f1 = Frame(root)
 f2 = Frame(root)
 f3 = Frame(root)
 f4 = Frame(root)
-
 # refereer naar de frames als "news"
 for frame in (f1, f2, f3, f4):
     frame.grid(row=0, column=0, ipady=40, ipadx=35, sticky='news')
@@ -386,7 +385,7 @@ def makenprijslijsten():
 def makenprijslijstenmetprijs():
     y = filterByPrice(int(entry3.get()),int(entry4.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
-    r=filterByAge(x,int(entry5.get()),int(entry6.get()))
+    r = filterByAge2(x,int(entry5.get()),int(entry6.get()))
     z = quicksort(r, "price")
     z.reverse()
     namen = []
@@ -493,7 +492,7 @@ Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 
-Button(f4, text='Voeg toe aan beste vrienden', command=addFriend).pack(pady=10, side=BOTTOM)
+#Button(f4, text='Voeg toe aan beste vrienden', command=addFriend).pack(pady=10, side=BOTTOM)
 
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
