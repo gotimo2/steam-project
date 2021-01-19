@@ -332,17 +332,18 @@ def addBestFriend():
 
 
 def removeBestFriend():
-    bestand = 'bestevrienden.json'
-    verwijder = 'Sven' #get uit gui toevoegen
+    bestand = 'vriendenlijst.json'
+    verwijderDoel = tree2.focus()
+    valueList = list(tree2.item(verwijderDoel).values())
+    verwijder = valueList[2][1]
     with open(bestand, 'r+') as lezen:
         besteVrienden = json.load(lezen)
-    for i in range(len(besteVrienden)):
-        if verwijder == besteVrienden[i]['naam']:
+    for i in range(0, len(besteVrienden)):
+        if verwijder == besteVrienden[i]['name']:
             del besteVrienden[i]
             break
     with open(bestand, 'w') as outfile:
         json.dump(besteVrienden, outfile, indent=4)
-
 
 def makenleeftijdlijsten():
     y = filterByAge(int(entry5.get()),int(entry6.get()))
@@ -386,7 +387,7 @@ def makenprijslijsten():
 def makenprijslijstenmetprijs():
     y = filterByPrice(int(entry3.get()),int(entry4.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
-    r=filterByAge(x,int(entry5.get()),int(entry6.get()))
+    r= filterByAge2(x,int(entry5.get()),int(entry6.get()))
     z = quicksort(r, "price")
     z.reverse()
     namen = []
@@ -492,9 +493,9 @@ Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
 
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
-Button(f4, text='Verwijder beste vriend', command=removeBestFriend()).pack(pady=10, side=BOTTOM)
+Button(f4, text='Verwijder beste vriend', command=removeBestFriend).pack(pady=10, side=BOTTOM)
 Button(f4, text='Voeg toe aan beste vrienden', command=addBestFriend).pack(pady=10, side=BOTTOM)
-button=Button(master=f4,text='Geef naam vriend',command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
+Button(master=f4,text='Geef naam vriend',command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
 Button(master=f4,text='Refresh',command=refreshvrienden).pack(pady=10, side=BOTTOM)
 entry7=Entry(master=f4)
 entry7.place(x=710,y=685)
