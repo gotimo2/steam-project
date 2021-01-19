@@ -1,7 +1,7 @@
 import json
 import os
 from tkinter import *  # pylint:disable=unused-wildcard-import
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import steam_games
 from steam_games import *  # pylint:disable=unused-wildcard-import
 import time
@@ -270,8 +270,7 @@ entry5.place(x=180,y=180)
 Label(f3, text='geef minimum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=400,y=160)
 entry6 = Entry(master=f3)
 entry6.place(x=400,y=180)
-entry7=Entry(master=f4)
-entry7.place(x=400,y=180)
+
 
 def vriendtoevoegen():
     x=random.randrange(0,2)
@@ -297,8 +296,9 @@ def vriendtoevoegen():
         'status': y})
     with open(bestand, 'w') as outfile:
         json.dump(data,outfile,indent=4)
-button=Button(master=f4,text='geef naam vriend',command=lambda: vriendtoevoegen())
-button.place(x=180,y=180)
+    entry7.delete(0, END)
+    messagebox.showinfo('Succes', 'Vriend is toegevoegd aan vriendenlijst.')
+
 
 
 def addBestFriend():
@@ -326,9 +326,9 @@ def addBestFriend():
             with open(bestand, 'w') as outfile:
                 json.dump(besteVrienden, outfile, indent=4)
         else:
-            print('Deze vriend staat al in je beste vriendenlijst.')
+            messagebox.showinfo('Foutmelding','Deze vriend staat al in je beste vriendenlijst.')
     else:
-        print('Je hebt al het maximumaantal (4) beste vrienden in je lijst staan.')
+        messagebox.showinfo('Foutmelding','Je hebt al het maximumaantal (4) beste vrienden in je lijst staan. Verwijder eerst een vriend en probeer het opnieuw.')
 
 
 def removeBestFriend():
@@ -455,8 +455,6 @@ insertment()
 def refreshvrienden():
     tree2.delete(*tree2.get_children())
     insertment()# leeg de tree
-button=Button(master=f4,text='refresh',command=lambda: refreshvrienden())
-button.place(y=500,x=500)
 
 lijstmetgamesvriend1 = ['Cities:Skylines', 'F1 2018', 'We Were Here Together']
 lijstmetgamesvriend2 = ['The Forest', 'Hollow Knight', 'F1 2018']
@@ -491,11 +489,18 @@ Button(f2, text='Lijst omkeren', command=reverseList).pack(pady=10)
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-Label(f4, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 
-Button(f4, text='Voeg toe aan beste vrienden', command=addFriend).pack(pady=10, side=BOTTOM)
 
-Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
+Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
+Button(f4, text='Verwijder beste vriend', command=removeBestFriend()).pack(pady=10, side=BOTTOM)
+Button(f4, text='Voeg toe aan beste vrienden', command=addBestFriend).pack(pady=10, side=BOTTOM)
+button=Button(master=f4,text='Geef naam vriend',command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
+Button(master=f4,text='Refresh',command=refreshvrienden).pack(pady=10, side=BOTTOM)
+entry7=Entry(master=f4)
+entry7.place(x=710,y=685)
+
+
+
 
 filterEntry = Entry(f2)
 filterEntry.pack(padx=20, pady=30)
