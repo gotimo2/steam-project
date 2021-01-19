@@ -422,14 +422,13 @@ def removeBestFriend():
     bestand = 'bestevrienden.json'
     verwijderDoel = tree2.focus()
     valueList = list(tree2.item(verwijderDoel).values())
-    verwijder = valueList[2][1]
+    verwijder = valueList[2][0]
     with open(bestand, 'r+') as lezen:
         besteVrienden = json.load(lezen)
     lezen.close()
     namen = []
     for b in range(0, len(besteVrienden)):
         namen.append(besteVrienden[b]['naam'])
-    print(namen)
     if verwijder in namen:
         for i in range(0, len(besteVrienden)):
             if verwijder == besteVrienden[i]['naam']:
@@ -765,7 +764,6 @@ if gpioMode:
         for i in range(len(besteVrienden)):
             if besteVrienden[i]['status'] == 'online':
                 aantal += 1
-        print(f'{aantal} vrienden online')
         return aantal
 
 
