@@ -572,7 +572,7 @@ if gpioMode:
 
     GPIO.setup(clock_pin, GPIO.OUT)
     GPIO.setup(data_pin, GPIO.OUT)
-
+    
 
     def apa102_send_bytes(clock_pin, data_pin, bytes):
         for byte in bytes:
@@ -639,22 +639,22 @@ if gpioMode:
         aantal = 0
         with open(bestand, 'r+') as lezen:
             besteVrienden = json.load(lezen)
+            lezen.close()
         for i in range(len(besteVrienden)):
             if besteVrienden[i]['status'] == 'online':
-                aantal = aantal + 1
+                aantal += 1
+        print(f'{aantal} vrienden online')
         return aantal
 
 
     def hc595(shift_clock_pin, latch_clock_pin, data_pin, value, delay):
-        for i in range(4):
+        for _ in range(4):
             if value % 2 == 1:
                 GPIO.output(data_pin, GPIO.HIGH)
-                GPIO.output(shift_clock_pin, GPIO.HIGH)
-                GPIO.output(shift_clock_pin, GPIO.LOW)
             else:
                 GPIO.output(data_pin, GPIO.LOW)
-                GPIO.output(shift_clock_pin, GPIO.HIGH)
-                GPIO.output(shift_clock_pin, GPIO.LOW)
+            GPIO.output(shift_clock_pin, GPIO.HIGH)
+            GPIO.output(shift_clock_pin, GPIO.LOW)
             value = value // 2
 
         GPIO.output(latch_clock_pin, GPIO.HIGH)
@@ -674,6 +674,8 @@ if gpioMode:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 14, delay)
         elif aantal == 4:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 15, delay)
+    
+    hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, 0.1)
 
 
     Button(f4, text='Check aantal online beste vrienden', command=aantalOnline).pack(pady=10, side=BOTTOM)
