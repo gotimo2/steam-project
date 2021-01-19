@@ -321,11 +321,31 @@ def addBestFriend():
                 'status': valueList2[2][9]})
             with open(bestand, 'w') as outfile:
                 json.dump(besteVrienden, outfile, indent=4)
+            messagebox.showinfo('Succes', 'Vried is toegevoegd aan je beste vriendenlijst.')
         else:
             messagebox.showinfo('Foutmelding', 'Deze vriend staat al in je beste vriendenlijst.')
     else:
         messagebox.showinfo('Foutmelding',
                             'Je hebt al het maximumaantal (4) beste vrienden in je lijst staan. Verwijder eerst een vriend en probeer het opnieuw.')
+if gpioMode:
+    def pulse(pin, delay1, delay2):
+        GPIO.output(pin, GPIO.HIGH)
+        time.sleep(delay1)
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(delay2)
+
+
+    def servo_pulse(pin_nr, position):
+        pulse(pin_nr, 0.0005 + (position * 0.00002), 0.02)
+
+
+    def startServo(status):
+        if status == 1:
+            for i in range(0, 100, 3):
+                servo_pulse(servo, i)
+        else:
+            for i in range(100, 0, -3):
+                servo_pulse(servo, i)
 
 
 def removeBestFriend():
@@ -348,6 +368,9 @@ def removeBestFriend():
                     while True:
                         if GPIO.input(23):
                             del besteVrienden[i]
+                            startServo(1)
+                            time.sleep(1)
+                            startServo(0)
                             break
                         time.sleep(0.1)
                     break
@@ -507,10 +530,11 @@ Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
 Button(f4, text='Verwijder beste vriend', command=removeBestFriend).pack(pady=10, side=BOTTOM)
 Button(f4, text='Voeg toe aan beste vrienden', command=addBestFriend).pack(pady=10, side=BOTTOM)
-Button(master=f4, text='Geef naam vriend', command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
+Button(master=f4, text='Voeg vriend toe:', command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
 Button(master=f4, text='Refresh', command=refreshvrienden).pack(pady=10, side=BOTTOM)
 entry7 = Entry(master=f4)
-entry7.place(x=710, y=685)
+entry7.place(x=730, y=736)
+entry7.insert(END, 'naam vriend')
 
 filterEntry = Entry(f2)
 filterEntry.pack(padx=20, pady=30)
@@ -579,7 +603,8 @@ else:
 if gpioMode:
     clock_pin = 19
     data_pin = 26
-
+    servo = 25
+    GPIO.setup(servo, GPIO.OUT)
     GPIO.setup(clock_pin, GPIO.OUT)
     GPIO.setup(data_pin, GPIO.OUT)
 
