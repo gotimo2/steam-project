@@ -22,5 +22,29 @@
         "game3": "The Depths of Tolagal",
         "game3st": 90,
         "status": "offline"
+    },
+    {
+        "naam": "henk",
+        "name": "henk",
+        "vriendcode": 3398390,
+        "game1": "Guns n Zombies",
+        "game1st": 59,
+        "game2": "Skyborn",
+        "game2st": 20,
+        "game3": "Kittypocalypse - Ungoggled",
+        "game3st": 16,
+        "status": "offline"
+    },
+    {
+        "naam": "Stan",
+        "name": "Stan",
+        "vriendcode": 1804449,
+        "game1": "Wondee",
+        "game1st": 14,
+        "game2": "Girlfriend Cards",
+        "game2st": 22,
+        "game3": "Call to Power II",
+        "game3st": 83,
+        "status": "online"
     }
 ]

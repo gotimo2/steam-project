@@ -252,64 +252,60 @@ tree2.column("#11", minwidth=0, width=75, stretch=NO)
 tree2
 
 
-Label(f3, text='top games bepaalde leeftijd:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=0)
-Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=25)
-Label(f3, text='voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=50)
-Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=75)
-Label(f3, text='vbld: top 100 begin bij nr 10 en eindig bij nr 30',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=100)
-Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=125)
-Label(f3, text='top games bepaalde prijs:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=0)
-Label(f3, text='voer minimale en maximale prijs in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=25)
-Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=50)
-Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=75)
-Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=100)
+Label(f3, text='Top games bepaalde leeftijd:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=0)
+Label(f3, text='Voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=25)
+Label(f3, text='Voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=50)
+Label(f3, text='Wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=75)
+Label(f3, text='Vbld: top 100 begin bij nr 10 en eindig bij nr 30',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=100)
+Label(f3, text='Klik voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=125)
+Label(f3, text='Top games bepaalde prijs:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=0)
+Label(f3, text='Voer minimale en maximale prijs in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=25)
+Label(f3, text='Voer minimale en maximale rating in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=50)
+Label(f3, text='Wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=75)
+Label(f3, text='Klik voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=100)
 
-Label(f3, text='top games bepaalde prijs met leeftijdsgrens:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=0)
-Label(f3, text='voer minimale en maximale prijs in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=25)
-Label(f3, text='voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=50)
-Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=75)
-Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=100)
-Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=125)
+Label(f3, text='Top games bepaalde prijs met leeftijdsgrens:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=0)
+Label(f3, text='Voer minimale en maximale prijs in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=25)
+Label(f3, text='Voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=50)
+Label(f3, text='Voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=75)
+Label(f3, text='Wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=100)
+Label(f3, text='Klik voor grafiek',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=125)
 
-Label(f3, text='geef maximum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=153)
+Label(f3, text='Geef maximum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=153)
 entry1 = Entry(master=f3)
 entry1.place(x=180,y=180)
-Label(f3, text='geef minimum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=153)
+Label(f3, text='Geef minimum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=153)
 entry2 = Entry(master=f3)
 entry2.place(x=380,y=180)
-Label(f3, text='geef maximum price',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560,y=153)
+Label(f3, text='Geef maximum price',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560,y=153)
 entry3 = Entry(master=f3)
 entry3.place(x=560,y=180)
-Label(f3, text='geef minimum price',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740,y=153)
+Label(f3, text='Geef minimum price',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740,y=153)
 entry4 = Entry(master=f3)
 entry4.place(x=740,y=180)
-Label(f3, text='geef maximum leeftiijd',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=240)
+Label(f3, text='Geef maximum leeftiijd',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=240)
 entry5 = Entry(master=f3)
 entry5.place(x=180,y=280)
-Label(f3, text='geef minimum leeftiijd',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=240)
+Label(f3, text='Geef minimum leeftiijd',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=240)
 entry6 = Entry(master=f3)
 entry6.place(x=400,y=280)
-Label(f3, text='geef het begingetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=590,y=240)
+Label(f3, text='Geef het begingetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=590,y=240)
 entry8 = Entry(master=f3)
 entry8.place(x=560,y=280)
-Label(f3, text='geef het eindgetal',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=770,y=240)
+Label(f3, text='Geef het eindgetal',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=770,y=240)
 entry9 = Entry(master=f3)
 entry9.place(x=740,y=280)
-Label(f3, text='klik hier voor de topgames\n voor een bepaalde leeftijd.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=21).place(x=180,y=360)
-Label(f3, text='klik hier voor de topgames\n voor een bepaalde prijs.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=20).place(x=420,y=360)
-Label(f3, text='klik hier voor de topgames\n voor een bepaalde prijs\n met een leeftijdsgrens.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=180,y=480)
-Label(f3, text='klik hier om terug te gaan\n naar het hoofdmenu',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=420,y=480)
+Label(f3, text='Klik hier voor de topgames\n voor een bepaalde leeftijd.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=21).place(x=180,y=360)
+Label(f3, text='Klik hier voor de topgames\n voor een bepaalde prijs.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=20).place(x=420,y=360)
+Label(f3, text='Klik hier voor de topgames\n voor een bepaalde prijs\n met een leeftijdsgrens.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=180,y=480)
+Label(f3, text='Klik hier om terug te gaan\n naar het hoofdmenu',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=420,y=480)
 
 #statistiek labels
-Label(f3, text='gemiddelde rating:\n' + str(mean(makeList('rating')))+'\n meest voorkomende rating:\n'+ str(modes(makeList('rating'))[0])+'\n standaardeviatie rating:\n' +str(std(makeList('rating')))+'\nvariantie rating:\n'+str(var(makeList('rating')))+'\nmediaan rating:\n'+str(median(makeList('rating'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=700,y=480)
-Label(f3, text='gemiddelde prijs:\n' + str(mean(makeList('price')))+'\n meest voorkomende prijs:\n'+ str(modes(makeList('price'))[0])+'\n standaardeviatie prijs:\n' +str(std(makeList('price')))+'\nvariantie prijs:\n'+str(var(makeList('price')))+'\nmediaan prijs:\n'+str(median(makeList('price'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=1000,y=480)
+Label(f3, text='Gemiddelde rating:\n' + str(mean(makeList('rating')))+'\n Meest voorkomende rating:\n'+ str(modes(makeList('rating'))[0])+'\n Standaardeviatie rating:\n' +str(std(makeList('rating')))+'\nVariantie rating:\n'+str(var(makeList('rating')))+'\nMediaan rating:\n'+str(median(makeList('rating'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=700,y=480)
+Label(f3, text='Gemiddelde prijs:\n' + str(mean(makeList('price')))+'\n Meest voorkomende prijs:\n'+ str(modes(makeList('price'))[0])+'\n Standaardeviatie prijs:\n' +str(std(makeList('price')))+'\nVariantie prijs:\n'+str(var(makeList('price')))+'\nMediaan prijs:\n'+str(median(makeList('price'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=1000,y=480)
 
 
 
-
-
-entry7=Entry(master=f4)
-entry7.place(y=560,x=300)
 
 
 
@@ -365,7 +361,7 @@ def addBestFriend():
                 'status': valueList2[2][9]})
             with open(bestand, 'w') as outfile:
                 json.dump(besteVrienden, outfile, indent=4)
-            messagebox.showinfo('Succes', 'Vried is toegevoegd aan je beste vriendenlijst.')
+            messagebox.showinfo('Succes', 'Vriend is toegevoegd aan je beste vriendenlijst.')
         else:
             messagebox.showinfo('Foutmelding', 'Deze vriend staat al in je beste vriendenlijst.')
     else:
@@ -474,7 +470,7 @@ def makenprijslijsten():
     plt.show()
 
 
-def makenprijslijstenmetprijs():
+def makenprijslijstenmetleeftijd():
     y = filterByPrice(int(entry3.get()),int(entry4.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
     r=filterByAge2(x,int(entry5.get()),int(entry6.get()))
@@ -499,11 +495,11 @@ def makenprijslijstenmetprijs():
 
 
 
-button1=Button(master=f3,command=lambda: makenprijslijsten(),text="makenprijslijsten")
+button1=Button(master=f3,command=lambda: makenprijslijsten(),text="Maak prijslijsten")
 button1.place(x=470,y=420)
-button2=Button(master=f3,command=lambda: makenleeftijdlijsten(),text="makenleeftijdlijsten")
+button2=Button(master=f3,command=lambda: makenleeftijdlijsten(),text="Maak leeftijd lijsten")
 button2.place(x=220,y=420)
-button3=Button(master=f3,command=lambda: makenprijslijstenmetleeftijd(),text="makenprijslijstenmetleeftijd")
+button3=Button(master=f3,command=lambda: makenprijslijstenmetleeftijd(),text="Maak prijslijsten met leeftijd")
 button3.place(x=220,y=560)
 
 def animate():
@@ -557,8 +553,6 @@ insertment()
 def refreshvrienden():
     tree2.delete(*tree2.get_children())
     insertment()  # leeg de tree
-button=Button(master=f4,text='refresh',command=lambda: refreshvrienden())
-button.place(y=630,x=420)
 
 
 lijstmetgamesvriend1 = ['Cities:Skylines', 'F1 2018', 'We Were Here Together']
@@ -590,8 +584,8 @@ Button(f2, text='Lijst omkeren', command=reverseList).pack(pady=10)
 
 # knoppen en labels voor welkom en teruggaan
 Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
-Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
-Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
+
+Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
 
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
 Button(f4, text='Verwijder beste vriend', command=removeBestFriend).pack(pady=10, side=BOTTOM)

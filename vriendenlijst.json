@@ -106,5 +106,41 @@
         "game3": "Call to Power II",
         "game3st": 83,
         "status": "online"
+    },
+    {
+        "naam": "henk",
+        "name": "henk",
+        "vriendcode": 3398390,
+        "game1": "Guns n Zombies",
+        "game1st": 59,
+        "game2": "Skyborn",
+        "game2st": 20,
+        "game3": "Kittypocalypse - Ungoggled",
+        "game3st": 16,
+        "status": "offline"
+    },
+    {
+        "naam": "naam vriend",
+        "name": "naam vriend",
+        "vriendcode": 7173572,
+        "game1": "Sakura Space",
+        "game1st": 90,
+        "game2": "Vostok Inc.",
+        "game2st": 44,
+        "game3": "Demon Hunter 4: Riddles of Light",
+        "game3st": 78,
+        "status": "online"
+    },
+    {
+        "naam": "Kees",
+        "name": "Kees",
+        "vriendcode": 1209303,
+        "game1": "RXE",
+        "game1st": 86,
+        "game2": "Aqua Moto Racing Utopia",
+        "game2st": 2,
+        "game3": "Elementium",
+        "game3st": 95,
+        "status": "online"
     }
 ]
