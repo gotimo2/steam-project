@@ -662,7 +662,7 @@ if gpioMode:
         time.sleep(delay)
 
 
-    def aantalOnline(aantal):
+    def aantalOnline(aantal=checkOnline()):
         delay = 0.1
         if aantal == 0:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, delay)
@@ -675,6 +675,8 @@ if gpioMode:
         elif aantal == 4:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 15, delay)
 
+
+    Button(f4, text='Check aantal online beste vrienden', command=aantalOnline).pack(pady=10, side=BOTTOM)
 else:
     pass
 # for i in filterByPrice(12, 10):
