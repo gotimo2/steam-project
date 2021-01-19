@@ -222,7 +222,7 @@ tree_scroll = Scrollbar(f4)
 tree_scroll.pack(side=RIGHT, fill=Y)
 
 tree2 = ttk.Treeview(f4, yscrollcommand=tree_scroll.set, height=25, column=(
-    "column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9", "column10"),
+    "column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9", "column10","column11"),
                      show='headings')
 tree_scroll.configure(command=tree.yview)
 # configureer tree
@@ -246,27 +246,71 @@ tree2.heading("#9", text="speeltijd")
 tree2.column("#9", minwidth=0, width=75, stretch=NO)
 tree2.heading("#10", text="status")
 tree2.column("#10", minwidth=0, width=75, stretch=NO)
+tree2.heading("#11", text="beste vriend?")
+tree2.column("#11", minwidth=0, width=75, stretch=NO)
 
 tree2
 
-Label(f3, text='geef maximum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180, y=63)
+
+Label(f3, text='top games bepaalde leeftijd:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=0)
+Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=25)
+Label(f3, text='voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=180,y=50)
+Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=75)
+Label(f3, text='vbld: top 100 begin bij nr 10 en eindig bij nr 30',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=100)
+Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=180,y=125)
+Label(f3, text='top games bepaalde prijs:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=0)
+Label(f3, text='voer minimale en maximale prijs in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=25)
+Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=560,y=50)
+Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=75)
+Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=560,y=100)
+
+Label(f3, text='top games bepaalde prijs met leeftijdsgrens:',foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=0)
+Label(f3, text='voer minimale en maximale prijs in',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=25)
+Label(f3, text='voer minimale en maximale leeftijd in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=50)
+Label(f3, text='voer minimale en maximale rating in',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=30).place(x=940,y=75)
+Label(f3, text='wat is het begingetal  en wat is het eindgetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=100)
+Label(f3, text='kliek voor grafiek',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=35).place(x=940,y=125)
+
+Label(f3, text='geef maximum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=153)
 entry1 = Entry(master=f3)
-entry1.place(x=180, y=90)
-Label(f3, text='geef minimum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380, y=63)
+entry1.place(x=180,y=180)
+Label(f3, text='geef minimum rating',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=153)
 entry2 = Entry(master=f3)
-entry2.place(x=380, y=90)
-Label(f3, text='geef maximum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560, y=63)
+entry2.place(x=380,y=180)
+Label(f3, text='geef maximum price',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560,y=153)
 entry3 = Entry(master=f3)
-entry3.place(x=560, y=90)
-Label(f3, text='geef minimum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740, y=63)
+entry3.place(x=560,y=180)
+Label(f3, text='geef minimum price',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740,y=153)
 entry4 = Entry(master=f3)
-entry4.place(x=740, y=90)
-Label(f3, text='geef maximum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180, y=160)
+entry4.place(x=740,y=180)
+Label(f3, text='geef maximum leeftiijd',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=240)
 entry5 = Entry(master=f3)
-entry5.place(x=180, y=180)
-Label(f3, text='geef minimum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=400, y=160)
+entry5.place(x=180,y=280)
+Label(f3, text='geef minimum leeftiijd',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=240)
 entry6 = Entry(master=f3)
-entry6.place(x=400, y=180)
+entry6.place(x=400,y=280)
+Label(f3, text='geef het begingetal',foreground='#ffffff',background='#008080',font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=590,y=240)
+entry8 = Entry(master=f3)
+entry8.place(x=560,y=280)
+Label(f3, text='geef het eindgetal',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=770,y=240)
+entry9 = Entry(master=f3)
+entry9.place(x=740,y=280)
+Label(f3, text='klik hier voor de topgames\n voor een bepaalde leeftijd.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=21).place(x=180,y=360)
+Label(f3, text='klik hier voor de topgames\n voor een bepaalde prijs.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=2, width=20).place(x=420,y=360)
+Label(f3, text='klik hier voor de topgames\n voor een bepaalde prijs\n met een leeftijdsgrens.',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=180,y=480)
+Label(f3, text='klik hier om terug te gaan\n naar het hoofdmenu',foreground='#ffffff',background='#008080', font=('Helvetica', 12, 'bold italic'), height=3, width=20).place(x=420,y=480)
+
+#statistiek labels
+Label(f3, text='gemiddelde rating:\n' + str(mean(makeList('rating')))+'\n meest voorkomende rating:\n'+ str(modes(makeList('rating'))[0])+'\n standaardeviatie rating:\n' +str(std(makeList('rating')))+'\nvariantie rating:\n'+str(var(makeList('rating')))+'\nmediaan rating:\n'+str(median(makeList('rating'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=700,y=480)
+Label(f3, text='gemiddelde prijs:\n' + str(mean(makeList('price')))+'\n meest voorkomende prijs:\n'+ str(modes(makeList('price'))[0])+'\n standaardeviatie prijs:\n' +str(std(makeList('price')))+'\nvariantie prijs:\n'+str(var(makeList('price')))+'\nmediaan prijs:\n'+str(median(makeList('price'))),foreground='#ffffff',background='#a52019', font=('Helvetica', 12, 'bold italic'), height=10, width=25).place(x=1000,y=480)
+
+
+
+
+
+entry7=Entry(master=f4)
+entry7.place(y=560,x=300)
+
 
 
 def vriendtoevoegen():
@@ -385,7 +429,7 @@ def removeBestFriend():
 
 
 def makenleeftijdlijsten():
-    y = filterByAge(int(entry5.get()), int(entry6.get()))
+    y = filterByAge(int(entry5.get()),int(entry6.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
     z = quicksort(x, "rating")
     z.reverse()
@@ -395,17 +439,20 @@ def makenleeftijdlijsten():
         namen.append(i.name)
         rating.append(i.rating)
     plt.figure(figsize=[7, 3])
-    namen2 = namen[:20]
-    rating2 = rating[:20]
+    namen2 = namen[int(entry8.get()):int(entry9.get())]
+    rating2 = rating[int(entry8.get()):int(entry9.get())]
     positie = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, ]
     plt.barh(namen2, rating2)
+    plt.xlabel('Rating')
+    plt.ylabel('Games')
+    plt.title('Top 20 games')
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
 
 
 def makenprijslijsten():
-    y = filterByPrice(float(entry3.get()), float(entry4.get()))
+    y = filterByPrice(float(entry3.get()),float(entry4.get()))
     x = filterByRating2(y, float(entry1.get()), float(entry2.get()))
     z = quicksort(x, "rating")
     z.reverse()
@@ -415,19 +462,22 @@ def makenprijslijsten():
         namen.append(i.name)
         rating.append(i.rating)
     plt.figure(figsize=[7, 3])
-    namen2 = namen[:10]
-    prijzen2 = rating[:10]
+    namen2 = namen[int(entry8.get()):int(entry9.get())]
+    prijzen2 = rating[int(entry8.get()):int(entry9.get())]
     positie = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ]
     plt.barh(namen2, prijzen2)
+    plt.xlabel('Rating')
+    plt.ylabel('Games')
+    plt.title('Top 20 games')
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
 
 
 def makenprijslijstenmetprijs():
-    y = filterByPrice(int(entry3.get()), int(entry4.get()))
+    y = filterByPrice(int(entry3.get()),int(entry4.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
-    r = filterByAge2(x, int(entry5.get()), int(entry6.get()))
+    r=filterByAge2(x,int(entry5.get()),int(entry6.get()))
     z = quicksort(r, "price")
     z.reverse()
     namen = []
@@ -436,21 +486,25 @@ def makenprijslijstenmetprijs():
         namen.append(i.name)
         prijzen.append(i.price)
     plt.figure(figsize=[7, 3])
-    namen2 = namen[:10]
-    prijzen2 = prijzen[:10]
+    namen2=namen[int(entry8.get()):int(entry9.get())]
+    prijzen2=prijzen[int(entry8.get()):int(entry9.get())]
     plt.barh(namen2, prijzen2)
+    plt.xlabel('Rating')
+    plt.ylabel('Games')
+    plt.title(
+        'Top 20 games for people between the age of' + ' ' + str(entry5.get()) + ' ' + 'and' + ' ' + str(entry6.get()))
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
 
 
-button1 = Button(master=f3, command=lambda: makenprijslijsten(), text="makenprijslijsten")
-button1.pack()
-button2 = Button(master=f3, command=lambda: makenleeftijdlijsten(), text="makenleeftijdlijsten")
-button2.pack()
-button3 = Button(master=f3, command=lambda: makenprijslijstenmetprijs(), text="makenprijslijstenmetprijs")
-button3.pack()
 
+button1=Button(master=f3,command=lambda: makenprijslijsten(),text="makenprijslijsten")
+button1.place(x=470,y=420)
+button2=Button(master=f3,command=lambda: makenleeftijdlijsten(),text="makenleeftijdlijsten")
+button2.place(x=220,y=420)
+button3=Button(master=f3,command=lambda: makenprijslijstenmetleeftijd(),text="makenprijslijstenmetleeftijd")
+button3.place(x=220,y=560)
 
 def animate():
     games = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
@@ -464,18 +518,23 @@ def animate():
 
 
 def insertment():
-    def tree2insert(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status):
+    def tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status,bestevriend):
         tree2.pack(pady=10, padx=10)
         tree2.insert(parent='', index='end', text="game",
-                     values=(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status))
-
+                     values=(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status,bestevriend))
     bestand = 'vriendenlijst.json'
+    bestevrienden='bestevrienden.json'
+    with open(bestevrienden, 'r+') as openen:
+        bestevriendendata = json.load(openen)
+    y=[]
+    for a in range(len(bestevriendendata)):
+        y.append(bestevriendendata[a]['naam'])
     with open(bestand, 'r+') as lezen:
         vriendendata = json.load(lezen)
     i = vriendendata
     for x in range(len(i)):
         naam = i[x]['naam']
-        name = i[x]['name']
+        name=i[x]['name']
         vriendcode = i[x]['vriendcode']
         game1 = i[x]['game1']
         game1st = i[x]['game1st']
@@ -484,7 +543,12 @@ def insertment():
         game3 = i[x]['game3']
         game3st = i[x]['game3st']
         status = i[x]['status']
-        tree2insert(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status)
+        if naam in y:
+            bestevriend = 'ja'
+        else:
+            bestevriend = 'nee'
+
+        tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status,bestevriend)
 
 
 insertment()
@@ -493,6 +557,8 @@ insertment()
 def refreshvrienden():
     tree2.delete(*tree2.get_children())
     insertment()  # leeg de tree
+button=Button(master=f4,text='refresh',command=lambda: refreshvrienden())
+button.place(y=630,x=420)
 
 
 lijstmetgamesvriend1 = ['Cities:Skylines', 'F1 2018', 'We Were Here Together']
