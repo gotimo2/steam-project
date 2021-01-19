@@ -684,12 +684,12 @@ if gpioMode:
 else:
     pass
 if gpioMode:
-    clock_pin = 19
-    data_pin = 26
+    LED_clock_pin = 19
+    LED_data_pin = 26
     servo = 25
     GPIO.setup(servo, GPIO.OUT)
-    GPIO.setup(clock_pin, GPIO.OUT)
-    GPIO.setup(data_pin, GPIO.OUT)
+    GPIO.setup(LED_clock_pin, GPIO.OUT)
+    GPIO.setup(LED_data_pin, GPIO.OUT)
 
 
     def apa102_send_bytes(clock_pin, data_pin, bytes):
@@ -708,24 +708,24 @@ if gpioMode:
     def apa102(clock_pin, data_pin, x):
         l = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
         b = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
-        rood = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1]]
-        groen = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0]]
-        oranje = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0],
-                  [0, 0, 0, 1, 1, 1, 1, 1]]
+        rood = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1]]
+        groen = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0]]
+        oranje = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 1],
+                  [1, 1, 1, 1, 1, 1, 1, 1]]
         uit = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
 
         if x == 0:
-            apa102_send_bytes(clock_pin, data_pin, l)
-            apa102_send_bytes(clock_pin, data_pin, groen * 8)
-            apa102_send_bytes(clock_pin, data_pin, b)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, l)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, groen * 8)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, b)
         #     elif status == 'offline':
         #         apa102_send_bytes(clock_pin, data_pin, l)
         #         apa102_send_bytes(clock_pin, data_pin, rood * 8)
         #         apa102_send_bytes(clock_pin, data_pin, b)
         if x == 1:
-            apa102_send_bytes(clock_pin, data_pin, l)
-            apa102_send_bytes(clock_pin, data_pin, oranje * 8)
-            apa102_send_bytes(clock_pin, data_pin, b)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, l)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, oranje * 8)
+            apa102_send_bytes(LED_clock_pin, LED_data_pin, b)
 
 
     #     elif status == 'off':
@@ -736,10 +736,10 @@ if gpioMode:
     def Refresh_status():
         if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
             icon(1)
-            apa102(clock_pin, data_pin, 1)
+            apa102(LED_clock_pin, LED_data_pin, 1)
         else:
             icon(0)
-            apa102(clock_pin, data_pin, 0)
+            apa102(LED_clock_pin, LED_data_pin, 0)
         root.after(10000, Refresh_status)
 
 
