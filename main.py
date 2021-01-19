@@ -294,13 +294,13 @@ Label(f3, text='Geef maximum rating', foreground='#ffffff', background='#008080'
 entry2 = Entry(master=f3)
 entry2.place(x=380, y=180)
 Label(f3, text='Geef minimum price', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=25).place(x=560, y=153)
+      height=1, width=25).place(x=585, y=153)
 entry3 = Entry(master=f3)
-entry3.place(x=560, y=180)
+entry3.place(x=585, y=180)
 Label(f3, text='Geef maximum price', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=25).place(x=740, y=153)
+      height=1, width=25).place(x=790, y=153)
 entry4 = Entry(master=f3)
-entry4.place(x=740, y=180)
+entry4.place(x=790, y=180)
 Label(f3, text='Geef minimum leeftiijd', foreground='#ffffff', background='#008080',
       font=('Helvetica', 12, 'bold italic'), height=1, width=25).place(x=180, y=240)
 entry5 = Entry(master=f3)
@@ -312,11 +312,11 @@ entry6.place(x=400, y=280)
 Label(f3, text='Geef het begingetal', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
       height=1, width=25).place(x=590, y=240)
 entry8 = Entry(master=f3)
-entry8.place(x=560, y=280)
+entry8.place(x=590, y=280)
 Label(f3, text='Geef het eindgetal', foreground='#ffffff', background='#008080', font=('Helvetica', 12, 'bold italic'),
-      height=1, width=25).place(x=770, y=240)
+      height=1, width=25).place(x=790, y=240)
 entry9 = Entry(master=f3)
-entry9.place(x=740, y=280)
+entry9.place(x=800, y=280)
 Label(f3, text='Klik hier voor de topgames\n voor een bepaalde leeftijd.', foreground='#ffffff', background='#008080',
       font=('Helvetica', 12, 'bold italic'), height=2, width=25).place(x=180, y=360)
 Label(f3, text='Klik hier voor de topgames\n voor een bepaalde prijs.', foreground='#ffffff', background='#008080',
