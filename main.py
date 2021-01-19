@@ -332,7 +332,7 @@ def addBestFriend():
 
 
 def removeBestFriend():
-    bestand = 'vriendenlijst.json'
+    bestand = 'bestevrienden.json'
     verwijderDoel = tree2.focus()
     valueList = list(tree2.item(verwijderDoel).values())
     verwijder = valueList[2][1]
@@ -340,8 +340,18 @@ def removeBestFriend():
         besteVrienden = json.load(lezen)
     for i in range(0, len(besteVrienden)):
         if verwijder == besteVrienden[i]['name']:
-            del besteVrienden[i]
-            break
+            if gpioMode:
+                messagebox.showinfo('info', 'druk op de knop om vriend te verwijderen')
+                while True:
+                    if GPIO.input(23):
+                        del besteVrienden[i]
+                        break
+            else:
+                del besteVrienden[i]
+                break
+        else:
+            messagebox.showinfo('error','vriend niet in beste vriendenlijst')
+
     with open(bestand, 'w') as outfile:
         json.dump(besteVrienden, outfile, indent=4)
 
@@ -662,7 +672,8 @@ if gpioMode:
         time.sleep(delay)
 
 
-    def aantalOnline(aantal=checkOnline()):
+    def aantalOnline():
+        aantal = checkOnline()
         delay = 0.1
         if aantal == 0:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, delay)
