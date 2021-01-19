@@ -290,4 +290,3 @@ def filterByRelease(que_low, que_high = currentDate):
         if que_high > i.release_date and que_low < i.release_date:
             returnlist.append(i)
     return returnlist
-    
