@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "naam": "Karel",
+        "name": "Karel",
+        "vriendcode": 5988363,
+        "game1": "Art of War: Red Tides",
+        "game1st": 86,
+        "game2": "Paintball Chibis",
+        "game2st": 57,
+        "game3": "Drizzlepath: Genie",
+        "game3st": 45,
+        "status": "online"
+    },
+    {
+        "naam": "Timo",
+        "name": "Timonator",
+        "vriendcode": 1571857,
+        "game1": "FreezeME",
+        "game1st": 97,
+        "game2": "Taimumari",
+        "game2st": 20,
+        "game3": "The Depths of Tolagal",
+        "game3st": 90,
+        "status": "offline"
+    }
+]

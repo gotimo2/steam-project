@@ -222,7 +222,8 @@ tree_scroll = Scrollbar(f4)
 tree_scroll.pack(side=RIGHT, fill=Y)
 
 tree2 = ttk.Treeview(f4, yscrollcommand=tree_scroll.set, height=25, column=(
-"column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9","column10"), show='headings')
+    "column1", "column2", "column3", "column4", "column5", "column6", "column7", "column8", "column9", "column10"),
+                     show='headings')
 tree_scroll.configure(command=tree.yview)
 # configureer tree
 tree2.heading("#1", text="gebruiker")
@@ -246,43 +247,39 @@ tree2.column("#9", minwidth=0, width=75, stretch=NO)
 tree2.heading("#10", text="status")
 tree2.column("#10", minwidth=0, width=75, stretch=NO)
 
-
 tree2
 
-
-
-
-Label(f3, text='geef maximum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=63)
+Label(f3, text='geef maximum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180, y=63)
 entry1 = Entry(master=f3)
-entry1.place(x=180,y=90)
-Label(f3, text='geef minimum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380,y=63)
+entry1.place(x=180, y=90)
+Label(f3, text='geef minimum rating', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=380, y=63)
 entry2 = Entry(master=f3)
-entry2.place(x=380,y=90)
-Label(f3, text='geef maximum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560,y=63)
+entry2.place(x=380, y=90)
+Label(f3, text='geef maximum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=560, y=63)
 entry3 = Entry(master=f3)
-entry3.place(x=560,y=90)
-Label(f3, text='geef minimum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740,y=63)
+entry3.place(x=560, y=90)
+Label(f3, text='geef minimum price', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=740, y=63)
 entry4 = Entry(master=f3)
-entry4.place(x=740,y=90)
-Label(f3, text='geef maximum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180,y=160)
+entry4.place(x=740, y=90)
+Label(f3, text='geef maximum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=180, y=160)
 entry5 = Entry(master=f3)
-entry5.place(x=180,y=180)
-Label(f3, text='geef minimum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=400,y=160)
+entry5.place(x=180, y=180)
+Label(f3, text='geef minimum leeftiijd', font=('Helvetica', 12, 'bold italic'), height=1, width=20).place(x=400, y=160)
 entry6 = Entry(master=f3)
-entry6.place(x=400,y=180)
+entry6.place(x=400, y=180)
 
 
 def vriendtoevoegen():
-    x=random.randrange(0,2)
-    if x ==0:
-        y='offline'
-    if x==1:
-        y='online'
+    x = random.randrange(0, 2)
+    if x == 0:
+        y = 'offline'
+    if x == 1:
+        y = 'online'
     bestand = 'vriendenlijst.json'
     with open(bestand, 'r+') as lezen:
         data = json.load(lezen)
     naam = entry7.get()
-    name=entry7.get()
+    name = entry7.get()
     data.append({
         'naam': naam,
         'name': name,
@@ -295,10 +292,9 @@ def vriendtoevoegen():
         'game3st': random.randrange(0, 100),
         'status': y})
     with open(bestand, 'w') as outfile:
-        json.dump(data,outfile,indent=4)
+        json.dump(data, outfile, indent=4)
     entry7.delete(0, END)
     messagebox.showinfo('Succes', 'Vriend is toegevoegd aan vriendenlijst.')
-
 
 
 def addBestFriend():
@@ -326,9 +322,10 @@ def addBestFriend():
             with open(bestand, 'w') as outfile:
                 json.dump(besteVrienden, outfile, indent=4)
         else:
-            messagebox.showinfo('Foutmelding','Deze vriend staat al in je beste vriendenlijst.')
+            messagebox.showinfo('Foutmelding', 'Deze vriend staat al in je beste vriendenlijst.')
     else:
-        messagebox.showinfo('Foutmelding','Je hebt al het maximumaantal (4) beste vrienden in je lijst staan. Verwijder eerst een vriend en probeer het opnieuw.')
+        messagebox.showinfo('Foutmelding',
+                            'Je hebt al het maximumaantal (4) beste vrienden in je lijst staan. Verwijder eerst een vriend en probeer het opnieuw.')
 
 
 def removeBestFriend():
@@ -338,25 +335,34 @@ def removeBestFriend():
     verwijder = valueList[2][1]
     with open(bestand, 'r+') as lezen:
         besteVrienden = json.load(lezen)
-    for i in range(0, len(besteVrienden)):
-        if verwijder == besteVrienden[i]['name']:
-            if gpioMode:
-                messagebox.showinfo('info', 'druk op de knop om vriend te verwijderen')
-                while True:
-                    if GPIO.input(23):
-                        del besteVrienden[i]
-                        break
-            else:
-                del besteVrienden[i]
-                break
-        else:
-            messagebox.showinfo('error','vriend niet in beste vriendenlijst')
+    lezen.close()
+    namen = []
+    for b in range(0, len(besteVrienden)):
+        namen.append(besteVrienden[b]['naam'])
+    print(namen)
+    if verwijder in namen:
+        for i in range(0, len(besteVrienden)):
+            if verwijder == besteVrienden[i]['naam']:
+                if gpioMode:
+                    messagebox.showinfo('info', 'druk op ok en daarna op de knop om vriend te verwijderen')
+                    while True:
+                        if GPIO.input(23):
+                            del besteVrienden[i]
+                            break
+                        time.sleep(0.1)
+                    break
+                else:
+                    del besteVrienden[i]
+                    break
+    else:
+        messagebox.showinfo('error', 'vriend staat niet in beste vriendenlijst')
 
     with open(bestand, 'w') as outfile:
         json.dump(besteVrienden, outfile, indent=4)
 
+
 def makenleeftijdlijsten():
-    y = filterByAge(int(entry5.get()),int(entry6.get()))
+    y = filterByAge(int(entry5.get()), int(entry6.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
     z = quicksort(x, "rating")
     z.reverse()
@@ -376,7 +382,7 @@ def makenleeftijdlijsten():
 
 
 def makenprijslijsten():
-    y = filterByPrice(float(entry3.get()),float(entry4.get()))
+    y = filterByPrice(float(entry3.get()), float(entry4.get()))
     x = filterByRating2(y, float(entry1.get()), float(entry2.get()))
     z = quicksort(x, "rating")
     z.reverse()
@@ -394,10 +400,11 @@ def makenprijslijsten():
     plt.tight_layout()
     plt.show()
 
+
 def makenprijslijstenmetprijs():
-    y = filterByPrice(int(entry3.get()),int(entry4.get()))
+    y = filterByPrice(int(entry3.get()), int(entry4.get()))
     x = filterByRating2(y, int(entry1.get()), int(entry2.get()))
-    r= filterByAge2(x,int(entry5.get()),int(entry6.get()))
+    r = filterByAge2(x, int(entry5.get()), int(entry6.get()))
     z = quicksort(r, "price")
     z.reverse()
     namen = []
@@ -406,50 +413,46 @@ def makenprijslijstenmetprijs():
         namen.append(i.name)
         prijzen.append(i.price)
     plt.figure(figsize=[7, 3])
-    namen2=namen[:10]
-    prijzen2=prijzen[:10]
+    namen2 = namen[:10]
+    prijzen2 = prijzen[:10]
     plt.barh(namen2, prijzen2)
     plt.gcf().subplots_adjust(bottom=0.15)
     plt.tight_layout()
     plt.show()
 
 
-
-
-
-button1=Button(master=f3,command=lambda: makenprijslijsten(),text="makenprijslijsten")
+button1 = Button(master=f3, command=lambda: makenprijslijsten(), text="makenprijslijsten")
 button1.pack()
-button2=Button(master=f3,command=lambda: makenleeftijdlijsten(),text="makenleeftijdlijsten")
+button2 = Button(master=f3, command=lambda: makenleeftijdlijsten(), text="makenleeftijdlijsten")
 button2.pack()
-button3=Button(master=f3,command=lambda: makenprijslijstenmetprijs(),text="makenprijslijstenmetprijs")
+button3 = Button(master=f3, command=lambda: makenprijslijstenmetprijs(), text="makenprijslijstenmetprijs")
 button3.pack()
 
-def animate():
 
+def animate():
     games = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
     prijzen = [9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00, 9.99, 42.00, 25.00,
                9.99, 42.00, 25.00, 9.99, 42.00, 8]
-    positie=[1,2,3,4,5,6,7,8,9,10]
-    plt.bar(positie,prijzen,width=0.5)
+    positie = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    plt.bar(positie, prijzen, width=0.5)
     plt.xticks(positie, games)
 
     plt.show()
 
 
-
-
 def insertment():
-    def tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status):
+    def tree2insert(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status):
         tree2.pack(pady=10, padx=10)
         tree2.insert(parent='', index='end', text="game",
-                     values=(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status))
+                     values=(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status))
+
     bestand = 'vriendenlijst.json'
     with open(bestand, 'r+') as lezen:
         vriendendata = json.load(lezen)
     i = vriendendata
     for x in range(len(i)):
         naam = i[x]['naam']
-        name=i[x]['name']
+        name = i[x]['name']
         vriendcode = i[x]['vriendcode']
         game1 = i[x]['game1']
         game1st = i[x]['game1st']
@@ -458,20 +461,21 @@ def insertment():
         game3 = i[x]['game3']
         game3st = i[x]['game3st']
         status = i[x]['status']
-        tree2insert(naam,name,vriendcode,game1,game1st,game2,game2st,game3,game3st,status)
+        tree2insert(naam, name, vriendcode, game1, game1st, game2, game2st, game3, game3st, status)
 
 
 insertment()
 
+
 def refreshvrienden():
     tree2.delete(*tree2.get_children())
-    insertment()# leeg de tree
+    insertment()  # leeg de tree
+
 
 lijstmetgamesvriend1 = ['Cities:Skylines', 'F1 2018', 'We Were Here Together']
 lijstmetgamesvriend2 = ['The Forest', 'Hollow Knight', 'F1 2018']
 lijstmetgamesvriend3 = ['Portal2', 'Tomb Raider', 'F1 2018']
 lijstmetgamesvriend4 = ['Stardew Valley', 'Rust', 'F1 2018']
-
 
 # plaats tree
 
@@ -491,7 +495,6 @@ lijstmetgamesvriend4 = ['Stardew Valley', 'Rust', 'F1 2018']
 # Button(f2, text='Sorteer games op datum AppID', command=sortByAppid).pack(pady=10)
 
 
-
 # knop voor steam launch en lijst omdraaien
 Button(f2, text='Start game', command=launchGame).pack(pady=10, side=BOTTOM)
 Button(f2, text='Lijst omkeren', command=reverseList).pack(pady=10)
@@ -501,17 +504,13 @@ Button(f2, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 Label(f3, text='Welkom', font=('Helvetica', 12, 'bold italic'), height=2, width=20).pack()
 Button(f3, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10)
 
-
 Button(f4, text='Terug', command=lambda: raise_frame(f1)).pack(pady=10, side=BOTTOM)
 Button(f4, text='Verwijder beste vriend', command=removeBestFriend).pack(pady=10, side=BOTTOM)
 Button(f4, text='Voeg toe aan beste vrienden', command=addBestFriend).pack(pady=10, side=BOTTOM)
-Button(master=f4,text='Geef naam vriend',command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
-Button(master=f4,text='Refresh',command=refreshvrienden).pack(pady=10, side=BOTTOM)
-entry7=Entry(master=f4)
-entry7.place(x=710,y=685)
-
-
-
+Button(master=f4, text='Geef naam vriend', command=vriendtoevoegen).pack(pady=10, side=BOTTOM)
+Button(master=f4, text='Refresh', command=refreshvrienden).pack(pady=10, side=BOTTOM)
+entry7 = Entry(master=f4)
+entry7.place(x=710, y=685)
 
 filterEntry = Entry(f2)
 filterEntry.pack(padx=20, pady=30)
@@ -548,6 +547,7 @@ if gpioMode:
 
     GPIO.setup(sr04_trig, GPIO.OUT)
     GPIO.setup(sr04_echo, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
     def AfstandSensor(trig_pin, echo_pin):  # Checkt of gebruiker achter pc zit en past de status aan.
@@ -582,7 +582,7 @@ if gpioMode:
 
     GPIO.setup(clock_pin, GPIO.OUT)
     GPIO.setup(data_pin, GPIO.OUT)
-    
+
 
     def apa102_send_bytes(clock_pin, data_pin, bytes):
         for byte in bytes:
@@ -602,7 +602,8 @@ if gpioMode:
         b = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
         rood = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1]]
         groen = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0]]
-        oranje = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
+        oranje = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 1],
+                  [1, 1, 1, 1, 1, 1, 1, 1]]
         uit = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
 
         if AfstandSensor(sr04_trig, sr04_echo) < 70:
@@ -623,7 +624,6 @@ if gpioMode:
     #         apa102_send_bytes(clock_pin, data_pin, l)
     #         apa102_send_bytes(clock_pin, data_pin, uit * 8)
     #         apa102_send_bytes(clock_pin, data_pin, b)
-
 
     def RefreshLEDstrip():
         apa102(clock_pin, data_pin)
@@ -685,9 +685,9 @@ if gpioMode:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 14, delay)
         elif aantal == 4:
             hc595(shift_clock_pin, latch_clock_pin, data_pin, 15, delay)
-    
-    hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, 0.1)
 
+
+    hc595(shift_clock_pin, latch_clock_pin, data_pin, 0, 0.1)
 
     Button(f4, text='Check aantal online beste vrienden', command=aantalOnline).pack(pady=10, side=BOTTOM)
 else:
