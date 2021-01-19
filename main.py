@@ -648,15 +648,6 @@ if gpioMode:
         return afstand_cm
 
 
-    def Refresh_status():
-        if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
-            icon(1)
-        else:
-            icon(0)
-        root.after(10000, Refresh_status)
-
-
-    Refresh_status()
 else:
     pass
 if gpioMode:
@@ -681,7 +672,7 @@ if gpioMode:
                     GPIO.output(clock_pin, GPIO.LOW)
 
 
-    def apa102(clock_pin, data_pin):
+    def apa102(clock_pin, data_pin, x):
         l = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
         b = [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1]]
         rood = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1]]
@@ -690,7 +681,7 @@ if gpioMode:
                   [1, 1, 1, 1, 1, 1, 1, 1]]
         uit = [[1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
 
-        if AfstandSensor(sr04_trig, sr04_echo) < 70:
+        if x == 0:
             apa102_send_bytes(clock_pin, data_pin, l)
             apa102_send_bytes(clock_pin, data_pin, groen * 8)
             apa102_send_bytes(clock_pin, data_pin, b)
@@ -698,7 +689,7 @@ if gpioMode:
         #         apa102_send_bytes(clock_pin, data_pin, l)
         #         apa102_send_bytes(clock_pin, data_pin, rood * 8)
         #         apa102_send_bytes(clock_pin, data_pin, b)
-        elif AfstandSensor(sr04_trig, sr04_echo) > 70:
+        if x == 1:
             apa102_send_bytes(clock_pin, data_pin, l)
             apa102_send_bytes(clock_pin, data_pin, oranje * 8)
             apa102_send_bytes(clock_pin, data_pin, b)
@@ -709,12 +700,17 @@ if gpioMode:
     #         apa102_send_bytes(clock_pin, data_pin, uit * 8)
     #         apa102_send_bytes(clock_pin, data_pin, b)
 
-    def RefreshLEDstrip():
-        apa102(clock_pin, data_pin)
-        root.after(1000, RefreshLEDstrip)
+    def Refresh_status():
+        if AfstandSensor(sr04_trig, sr04_echo) > 70:  # Gebruiker van pc dus status op 'away'
+            icon(1)
+            apa102(clock_pin, data_pin, 1)
+        else:
+            icon(0)
+            apa102(clock_pin, data_pin, 0)
+        root.after(10000, Refresh_status)
 
 
-    RefreshLEDstrip()
+    Refresh_status()
 else:
     pass
 
