@@ -626,8 +626,8 @@ entry7 = Entry(master=f4)
 entry7.place(x=730, y=736)
 entry7.insert(END, 'naam vriend')
 
-filterEntry = Entry(f2)
-filterEntry.pack(padx=20, pady=30)
+#filterEntry = Entry(f2)
+#filterEntry.pack(padx=20, pady=30)
 
 
 # filterPicker = OptionMenu(f2, 'naam', 'waardering', 'prijs', 'minimumleeftijd', 'appID', 'uitkomstdatum')
